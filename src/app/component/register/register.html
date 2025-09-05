@@ -1,112 +1,29 @@
-<!-- Center everything vertically and horizontally -->
-<body class="d-flex align-items-center justify-content-center vh-100">
-  <!-- Card Container -->
-  <div class="card shadow-lg border-0 rounded-3 overflow-hidden register-card">
-    <!-- Grid Layout removes spacing between columns.-->
-    <div class="row g-0">
-      <!-- Left: Movie Slider that will be hiden on extra-small screens.-->
-      <div class="col-md-6 d-none d-md-block">
-        <!-- carousel component. with  animation, full height of the parent column, auto starts by using custom arrti -->
-        <div id="movieCarousel" class="carousel slide h-100" data-bs-ride="carousel">
-          <!-- slides wrapper with parent height-->
-          <div class="carousel-inner h-100">
-            <!-- Items -->
-            <div class="carousel-item active h-100">
-              <img
-                src="https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg"
-                class="d-block w-100 h-100 object-fit-cover"
-                alt="Train to Busan"
-              />
-              <div class="carousel-caption d-none d-md-block top-0">
-                <h5 class="fw-bold text-center mb-3">Let the streaming begin</h5>
-                <p clas="text-muted text-center small">
-                  Watch thousands of free movies and TV shows anytime.
-                </p>
-              </div>
-            </div>
-            <div class="carousel-item h-100">
-              <img
-                src="https://image.tmdb.org/t/p/original/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg"
-                class="d-block w-100 h-100 object-fit-cover"
-                alt="Joker"
-              />
-              <div class="carousel-caption d-none d-md-block top-0">
-                <h5 class="fw-bold mb-3">Unlimited Entertainment</h5>
-                <p clas="text-muted small">
-                  Stream your personal collection of movies, TV episodes and more.
-                </p>
-              </div>
-            </div>
-          </div>
+
+ 
+ 
+
+<body>
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="login-container">
+      <h3 class="mb-4">Sign up</h3>
+      <form>
+        <div class="mb-3">
+          <input type="email" class="form-control" placeholder="name" required>
         </div>
-      </div>
-
-      <!-- Right: Register Form -->
-      <div class="col-md-6 p-5">
-        <div class="position-absolute top-0 end-0 m-3">
-          <button type="button" class="btn-close" aria-label="Close"></button>
+        <div class="mb-3">
+          <input type="email" class="form-control" placeholder="Email" required>
         </div>
-        <h3 class="fw-bold text-center mb-3">Create your free account</h3>
-        <p class="text-muted text-center small">No credit card required.</p>
-
-        <!-- Social Buttons -->
-        <div class="d-grid gap-2 mb-3">
-          <button class="btn btn-outline-secondary btn-google">
-            <span
-              class="spinner-border spinner-border-sm me-2"
-              role="status"
-              aria-hidden="true"
-            ></span>
-            <img
-              src="https://www.svgrepo.com/show/475656/google-color.svg"
-              alt="Google"
-              width="20"
-              height="20"
-              class="me-2"
-            />
-            Continue with Google
-          </button>
-          <button class="btn btn-dark"><span
-              class="spinner-border spinner-border-sm me-2"
-              role="status"
-              aria-hidden="true"
-            ></span><i class="bi bi-apple me-2"></i> Continue with Apple</button>
+        <div class="mb-3">
+          <input type="password" class="form-control" placeholder="Password" required>
         </div>
-
-        <div class="text-center text-muted mb-3">or</div>
-
-        <!-- Form -->
-        <form>
-          <div class="mb-3">
-            <input type="email" class="form-control" placeholder="Email address" required />
-          </div>
-          <div class="mb-3">
-            <input
-              type="password"
-              class="form-control"
-              placeholder="Create password"
-              minlength="10"
-              required
-            />
-            <div class="form-text">8 characters minimum</div>
-          </div>
-
-          <!-- Password Requirements -->
-          <ul class="small text-muted list-unstyled">
-            <li><i class="bi bi-x-circle text-danger me-1"></i> 8 characters</li>
-            <li><i class="bi bi-x-circle text-danger me-1"></i> Uppercase letter</li>
-            <li><i class="bi bi-x-circle text-danger me-1"></i> Lowercase letter</li>
-            <li><i class="bi bi-x-circle text-danger me-1"></i> Number</li>
-            <li><i class="bi bi-x-circle text-danger me-1"></i> Special character</li>
-          </ul>
-
-          <button class="btn btn-warning w-100 fw-bold" type="submit">Create an Account</button>
-        </form>
-
-        <p class="mt-3 text-center small">
-          Already have an account? <a href="#" class="fw-bold">Sign In</a>
-        </p>
-      </div>
+        <button type="submit" class="btn btn-red mb-3">Sign In</button>
+    
+        <div class="extra-links">
+          Already have an account? <a href="#">login now.</a>
+        </div>
+      
+      </form>
     </div>
   </div>
+  <!-- Bootstrap JS -->
 </body>

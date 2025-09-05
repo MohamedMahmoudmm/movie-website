@@ -1,8 +1,50 @@
-body {
-  background-color: #121212b3;
+   body {
+      background: url("../../../../public/bg.png") no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+    }
+    .login-container {
+      background: rgba(0, 0, 0, 0.75);
+      padding: 40px;
+      border-radius: 5px;
+      max-width: 350px;
+      width: 100%;
+      margin: auto;
+      margin-top: 80px;
+      color: #fff;
+    }
+    .form-control {
+      background-color: #333;
+      border: none;
+      color: #fff;
+    }
+    .form-control:focus {
+      background-color: #938e8e;
+      color: #fff;
+      box-shadow: none;
+      
+    }
+    input::placeholder {
+  color: rgb(227, 222, 222); /* Replace 'red' with your desired color */
 }
-/*custom constraint*/
-.register-card {
-  max-width: 900px;
-  width: 100%;
-}
+    .btn-red {
+      background-color:yellow;
+      border: none;
+      width: 100%;
+      font-weight: bold;
+    }
+    .btn-red:hover {
+      background-color:rgb(157, 157, 50);
+    }
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+    a:hover {
+        color:yellow;
+      text-decoration: underline;
+    }
+    .extra-links {
+      font-size: 14px;
+      color: #b3b3b3;
+    }
