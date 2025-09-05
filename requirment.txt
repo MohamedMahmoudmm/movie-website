@@ -1,0 +1,27 @@
+nav comp
+
+
+main page:
+        product comp
+details comp:
+
+search comp:
+         product comp
+wishlist:
+        product comp
+
+favorite:
+        product comp
+
+
+login:
+register:
+account details:
+
+footer comp :(pagenation)
+
+interfaces:
+        movie
+        user
+shared:
+        movie service(http)
