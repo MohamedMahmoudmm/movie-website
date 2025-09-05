@@ -14,7 +14,7 @@ wishlist:
 
 login:                   mohamed
 register:               montaser
-account details:  
+account details:    montaser
 
 footer comp :(pagenation)
 
