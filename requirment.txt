@@ -2,21 +2,19 @@ nav comp
 
 
 main page:
-        product comp
-details comp:
+        product comp      omer
+details comp:             hazem
 
 search comp:
-         product comp
+         product comp     omer
 wishlist:
-        product comp
-
-favorite:
-        product comp
+        product comp      shrok
 
 
-login:
-register:
-account details:
+
+login:                   mohamed
+register:               montaser
+account details:  
 
 footer comp :(pagenation)
 
