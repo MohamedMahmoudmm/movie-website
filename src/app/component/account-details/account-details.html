@@ -1,1 +1,85 @@
-<p>account-details works!</p>
+<main class="account-container d-flex flex-column vh-100">
+  <!-- Profile & Stats Section -->
+  <div class="flex-grow-1">
+    <!-- Profile Card -->
+    <section
+      class="profile-card d-flex align-items-center gap-3 p-4 rounded position-relative mb-3"
+    >
+      <div class="profile-avatar position-relative">
+        @if (profileImage) {
+        <img
+          [src]="profileImage"
+          alt="Profile"
+          class="avatar-img w-100 h-100 rounded object-fit-cover"
+        />
+        } @else {
+        <div
+          class="avatar-placeholder d-flex align-items-center justify-content-center text-white fw-bold fs-2 rounded w-100 h-100"
+        >
+          M
+        </div>
+        }
+      </div>
+
+      <!-- Profile Info -->
+      <div class="profile-info flex-grow-1">
+        <h3 class="mb-1">{{ username }}</h3>
+        <p class="text-muted mb-0 small">
+          <i class="bi bi-calendar4 me-1 text-white"></i
+          ><span class="text-white">Joined {{ joinedYear }}</span>
+        </p>
+      </div>
+
+      <!-- Top Right Edit Button -->
+      <div class="position-absolute top-0 end-0 p-3">
+        <button class="btn btn-link text-white fw-bold p-0 text-decoration-none">Edit Profile</button>
+      </div>
+    </section>
+
+    <!-- Stats + Watched recently -->
+    <section class="stats-card mb-4 p-4 rounded text-center">
+      <div class="stats d-flex justify-content-around mb-3">
+        @for (stat of stats; track stat.label) {
+        <div>
+          <h4 class="mb-0">{{ stat.count }}</h4>
+          <p class="text-white mb-0 small">{{ stat.label }}</p>
+        </div>
+        }
+      </div>
+
+      <hr class="border-secondary opacity-25 my-3" />
+
+      <h6 class="text-start mb-3"><i class="bi bi-clock-history me-2"></i> Watched recently</h6>
+
+      <!-- Horizontal scroll container -->
+      <div class="watched-container position-relative">
+        <!-- Left Arrow -->
+        <button class="scroll-btn left">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+
+        <!-- Cards -->
+        <div class="watched-scroll d-flex overflow-auto align-items-center">
+          @for (item of recent; track item.id) {
+          <div class="watched-card card border-0 me-3 flex-shrink-0">
+            <img [src]="item.poster" [alt]="item.title" class="card-img-top poster-img" />
+            <div class="card-body p-2">
+              <h6 class="card-title mb-1 text-truncate text-white">{{ item.title }}</h6>
+              <small class="text-white">
+                <i class="bi bi-star-fill me-1 text-warning"></i>{{ item.rating }}/10
+              </small>
+            </div>
+          </div>
+          }
+        </div>
+
+        <!-- Right Arrow -->
+        <button class="scroll-btn right">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
+
+      <small class="text-white d-block mt-3">Watched since joining</small>
+    </section>
+  </div>
+</main>
