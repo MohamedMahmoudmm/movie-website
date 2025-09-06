@@ -1,6 +1,6 @@
 <div class="row g-3 m-3">
     @for (movie of movies; track movie.id) {
-    <div class="col-md-2 col-sm-4 col-6">
+    <div class="col-lg-2 col-md-4 col-sm-6 col-6" routerLink='details'>
         <div class="movie-card">
             <div class="poster-wrapper position-relative">
                 <img [src]="movie.poster_path" class="img-fluid rounded shadow" />
