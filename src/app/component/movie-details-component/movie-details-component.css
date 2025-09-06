@@ -1,0 +1,12 @@
+ body {
+        background-color: #f9f9f9;
+    }
+
+    .movie-poster {
+        max-width: 100%;
+        border-radius: 10px;
+    }
+
+    .genre-btn {
+        margin-right: 5px;
+    }

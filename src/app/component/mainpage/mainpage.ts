@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import { Header } from '../header/header';
+import { Search } from '../search/search';
+import { CardComponents } from '../card-components/card-components';
 
 @Component({
   selector: 'app-mainpage',
-  imports: [],
+  imports: [Header,Search,CardComponents],
   templateUrl: './mainpage.html',
   styleUrl: './mainpage.css'
 })
