@@ -1,0 +1,102 @@
+/* Main container */
+.account-container {
+  margin: auto;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background: #121212;
+  padding: 24px;
+}
+
+/* Profile Card custom background */
+.profile-card {
+  background: #575757a9;
+}
+
+/* Avatar wrapper */
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+}
+
+/* Avatar image */
+.avatar-img {
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Avatar placeholder */
+.avatar-placeholder {
+  background: #ff7043;
+  font-size: 36px;
+}
+
+/* Stats Card custom background */
+.stats-card {
+  background:#575757a9;
+}
+
+/* Watched Recently Section */
+.watched-container {
+  position: relative;
+}
+
+.watched-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 5px 40px; /* space so arrows don’t overlap */
+}
+
+.watched-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.watched-scroll::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 3px;
+}
+
+/* Watched Card */
+.watched-card {
+  background: #575757a9;
+  border-radius: 12px;
+  width: 150px;
+  flex-shrink: 0;
+}
+
+.poster-img {
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+/* Scroll Buttons */
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.241);
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.2s ease;
+}
+
+.scroll-btn:hover {
+  background: rgba(234, 228, 228, 0.8);
+}
+
+.scroll-btn.left {
+  left: 0;
+}
+
+.scroll-btn.right {
+  right: 0;
+}
