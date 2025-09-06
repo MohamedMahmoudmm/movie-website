@@ -1,0 +1,196 @@
+<main class="account-container">
+  <!-- Header -->
+  <div class="mb-3">
+    <h5 class="text-white small">My Profile • {{ username | uppercase }}</h5>
+  </div>
+
+  <!-- Profile Card -->
+  <section class="profile-card p-3 rounded mb-4 position-relative">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <h6 class="text-white small mb-0">PROFILE IMAGE</h6>
+      <button
+        class="btn btn-link text-warning fw-bold p-0 text-decoration-none"
+        (click)="isEditingImage ? cancelImageEdit() : openImageEditor()"
+      >
+        {{ !isEditingImage ? 'Edit' : 'Cancel' }}
+      </button>
+    </div>
+
+    <!-- PREVIEW MODE -->
+    @if (!isEditingImage) {
+      <div class="d-flex align-items-start gap-4 mt-3">
+        <div class="avatar-wrapper">
+          @if (savedProfileImage) {
+            <img [src]="savedProfileImage" alt="Profile" class="profile-circle" />
+          } @else {
+            <div class="avatar-placeholder rounded-circle w-100 h-100">M</div>
+          }
+        </div>
+        <div class="flex-grow-1 text-white small">
+          <p class="mb-0">
+            You can update your profile image by clicking <strong>Edit</strong> above.
+          </p>
+        </div>
+      </div>
+    } @else {
+      <!-- EDIT MODE -->
+      <div class="profile-editor mt-3">
+        <div class="row g-3">
+          <!-- Left column: image preview + scale controls stacked -->
+          <div class="col-12 col-md-6 d-flex flex-column">
+            <div class="image-preview-wrapper mb-3">
+              @if (tempProfileImage) {
+                <img
+                  [src]="tempProfileImage"
+                  alt="Preview"
+                  class="editable-image"
+                  [style.transform]="imageTransform"
+                  (mousedown)="startDrag($event)"
+                />
+              } @else {
+                <div class="avatar-placeholder rounded-circle w-100 h-100">MI</div>
+              }
+            </div>
+
+            @if (isImageSelected) {
+              <div class="scale-controls justify-content-center mb-3">
+                <span class="text-white small">Scale</span>
+                <input
+                  type="range"
+                  min="0.5"
+                  max="2"
+                  step="0.2"
+                  [(ngModel)]="scaleValue"
+                />
+                <span class="text-white small">
+                  {{ scaleValue | number : '1.1-1' }}x
+                </span>
+              </div>
+              <div class="w-100 text-end mt-2">
+                <button
+                  class="btn btn-sm btn-outline-light me-2"
+                  (click)="deleteTempImage()"
+                >
+                  Remove
+                </button>
+                <button
+                  class="btn btn-warning btn-sm"
+                  (click)="saveImage()"
+                >
+                  Save Changes
+                </button>
+              </div>
+            }
+          </div>
+
+          <!-- Right column: file input + tips -->
+          <div class="col-12 col-md-4">
+            <p class="text-white small mb-1 text-start">Choose an image</p>
+            <input
+              class="form-control form-control-sm mb-2 form-control-dark"
+              type="file"
+              accept="image/*"
+              (change)="onFileSelected($event)"
+            />
+            <div class="text-white small">
+              <p class="mb-0">
+                Tip: drag the image to reposition, use the slider to scale.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </section>
+
+  <!-- Public Profile Information -->
+  <section class="stats-card p-3 rounded mb-4 position-relative">
+    <h6 class="text-white mb-3 small">PUBLIC PROFILE INFORMATION</h6>
+
+    <!-- Edit Button -->
+    <button
+      class="btn btn-link text-warning text-decoration-none fw-bold position-absolute top-0 end-0 m-3"
+      (click)="toggleInfoEdit()"
+    >
+      {{ isEditingInfo ? 'Cancel' : 'Edit' }}
+    </button>
+
+    <!-- Display Mode -->
+    @if (!isEditingInfo) {
+      <div class="row g-2 mt-2">
+        <div class="col-12">
+          <label class="form-label text-white small">Username</label>
+          <div class="form-control text-white border-secondary bg-transparent">
+            {{ username }}
+          </div>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label text-white small">Full Name</label>
+          <div class="form-control text-white border-secondary bg-transparent">
+            {{ fullName || 'Not set' }}
+          </div>
+        </div>
+      </div>
+    } @else {
+      <!-- Edit Mode -->
+      <div class="row g-2 mt-2">
+        <div class="col-12">
+          <label class="form-label small">Username</label>
+          <input
+            type="text"
+            class="form-control text-white border-secondary bg-transparent"
+            [(ngModel)]="username"
+          />
+        </div>
+
+        <div class="col-12">
+          <label class="form-label text-white small">Full Name</label>
+          <input
+            type="text"
+            class="form-control text-white border-secondary bg-transparent"
+            [(ngModel)]="fullName"
+          />
+        </div>
+      </div>
+
+      <div class="mt-3 w-100 text-end">
+        <button class="btn btn-warning btn-sm" (click)="saveInfo()">
+          Save
+        </button>
+      </div>
+    }
+  </section>
+
+  <!-- Update Password Section (unchanged) -->
+  <section class="stats-card p-3 rounded mb-4">
+    <h6 class="text-white mb-3">UPDATE PASSWORD</h6>
+
+    <div class="mb-3">
+      <label class="form-label text-white">Current Password</label>
+      <input
+        type="password"
+        class="form-control text-white border-secondary bg-transparent"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label text-white">New Password</label>
+      <input
+        type="password"
+        class="form-control text-white border-secondary bg-transparent"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label text-white">Confirm New Password</label>
+      <input
+        type="password"
+        class="form-control text-white border-secondary bg-transparent"
+      />
+    </div>
+    <div class="w-100 text-end">
+    <button class="btn btn-warning">Update Password</button>
+    </div>
+  </section>
+</main>
