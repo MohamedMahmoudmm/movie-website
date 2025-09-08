@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MovieModel } from '../../models/movie-model';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from "@angular/router";
+import { RouterLink } from '@angular/router';
+import { HttpService } from '../../services/http-service';
 
 @Component({
   selector: 'app-card-components',
@@ -10,191 +11,44 @@ import { RouterLink } from "@angular/router";
   styleUrl: './card-components.css'
 })
 export class CardComponents {
+  @Input() movies: MovieModel[] = [];
 
-  movies: MovieModel[] = [
-    {
-      adult: false,
-      backdrop_path: '',
-      genre_ids: [18],
-      id: 1,
-      original_language: 'en',
-      original_title: 'My Fault',
-      overview: 'Some text...',
-      popularity: 200,
-      poster_path: 'https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg',
-      release_date: '2023-06-08',
-      title: 'My Fault',
-      video: false,
-      vote_average: 8.1,
-      vote_count: 1200
-    },
-        {
-      adult: false,
-      backdrop_path: '',
-      genre_ids: [18],
-      id: 1,
-      original_language: 'en',
-      original_title: 'My Fault',
-      overview: 'Some text...',
-      popularity: 200,
-      poster_path: 'https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg',
-      release_date: '2023-06-08',
-      title: 'My Fault',
-      video: false,
-      vote_average: 8.1,
-      vote_count: 1200
-    },    {
-      adult: false,
-      backdrop_path: '',
-      genre_ids: [18],
-      id: 1,
-      original_language: 'en',
-      original_title: 'My Fault',
-      overview: 'Some text...',
-      popularity: 200,
-      poster_path: 'https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg',
-      release_date: '2023-06-08',
-      title: 'My Fault',
-      video: false,
-      vote_average: 8.1,
-      vote_count: 1200
-    },    {
-      adult: false,
-      backdrop_path: '',
-      genre_ids: [18],
-      id: 1,
-      original_language: 'en',
-      original_title: 'My Fault',
-      overview: 'Some text...',
-      popularity: 200,
-      poster_path: 'https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg',
-      release_date: '2023-06-08',
-      title: 'My Fault',
-      video: false,
-      vote_average: 8.1,
-      vote_count: 1200
-    },    {
-      adult: false,
-      backdrop_path: '',
-      genre_ids: [18],
-      id: 1,
-      original_language: 'en',
-      original_title: 'My Fault',
-      overview: 'Some text...',
-      popularity: 200,
-      poster_path: 'https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg',
-      release_date: '2023-06-08',
-      title: 'My Fault',
-      video: false,
-      vote_average: 8.1,
-      vote_count: 1200
-    },    {
-      adult: false,
-      backdrop_path: '',
-      genre_ids: [18],
-      id: 1,
-      original_language: 'en',
-      original_title: 'My Fault',
-      overview: 'Some text...',
-      popularity: 200,
-      poster_path: 'https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg',
-      release_date: '2023-06-08',
-      title: 'My Fault',
-      video: false,
-      vote_average: 8.1,
-      vote_count: 1200
-    },    {
-      adult: false,
-      backdrop_path: '',
-      genre_ids: [18],
-      id: 1,
-      original_language: 'en',
-      original_title: 'My Fault',
-      overview: 'Some text...',
-      popularity: 200,
-      poster_path: 'https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg',
-      release_date: '2023-06-08',
-      title: 'My Fault',
-      video: false,
-      vote_average: 8.1,
-      vote_count: 1200
-    },    {
-      adult: false,
-      backdrop_path: '',
-      genre_ids: [18],
-      id: 1,
-      original_language: 'en',
-      original_title: 'My Fault',
-      overview: 'Some text...',
-      popularity: 200,
-      poster_path: 'https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg',
-      release_date: '2023-06-08',
-      title: 'My Fault',
-      video: false,
-      vote_average: 8.1,
-      vote_count: 1200
-    },    {
-      adult: false,
-      backdrop_path: '',
-      genre_ids: [18],
-      id: 1,
-      original_language: 'en',
-      original_title: 'My Fault',
-      overview: 'Some text...',
-      popularity: 200,
-      poster_path: 'https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg',
-      release_date: '2023-06-08',
-      title: 'My Fault',
-      video: false,
-      vote_average: 8.1,
-      vote_count: 1200
-    },    {
-      adult: false,
-      backdrop_path: '',
-      genre_ids: [18],
-      id: 1,
-      original_language: 'en',
-      original_title: 'My Fault',
-      overview: 'Some text...',
-      popularity: 200,
-      poster_path: 'https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg',
-      release_date: '2023-06-08',
-      title: 'My Fault',
-      video: false,
-      vote_average: 8.1,
-      vote_count: 1200
-    },    {
-      adult: false,
-      backdrop_path: '',
-      genre_ids: [18],
-      id: 1,
-      original_language: 'en',
-      original_title: 'My Fault',
-      overview: 'Some text...',
-      popularity: 200,
-      poster_path: 'https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg',
-      release_date: '2023-06-08',
-      title: 'My Fault',
-      video: false,
-      vote_average: 8.1,
-      vote_count: 1200
-    },
-     {
-      adult: false,
-      backdrop_path: '',
-      genre_ids: [18],
-      id: 1,
-      original_language: 'en',
-      original_title: 'My Fault',
-      overview: 'Some text...',
-      popularity: 200,
-      poster_path: 'https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg',
-      release_date: '2023-06-08',
-      title: 'My Fault',
-      video: false,
-      vote_average: 8.1,
-      vote_count: 1200
-    },
-  ];
+  sessionId: string = '257779405c116d07a85e34239541134469da2573';
+
+  constructor(private http: HttpService) {}
+
+  toggleFavorite(movie: MovieModel, event: Event) {
+  event.stopPropagation(); 
+  const body = {
+    media_type: 'movie',
+    media_id: movie.id,
+    favorite: !movie.inFav
+  }
+
+  this.http.post(body, `account/21908959/favorite?session_id=${this.sessionId}`)
+    .subscribe({
+      next: () => {
+        movie.inFav = !movie.inFav;
+      },
+      error: (err) => console.error('Error adding to favorite:', err)
+    });
+}
+
+toggleWatchlist(movie: MovieModel, event: Event) {
+  event.stopPropagation();
+  const body = {
+    media_type: 'movie',
+    media_id: movie.id,
+    watchlist: !movie.inWatchlist
+  };
+
+  this.http.post(body, `account/21908959/watchlist?session_id=${this.sessionId}`)
+    .subscribe({
+      next: () => {
+        movie.inWatchlist = !movie.inWatchlist;
+      },
+      error: (err) => console.error('Error adding to watchlist:', err)
+    });
+}
 
 }

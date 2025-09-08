@@ -1,18 +1,35 @@
 <div class="row g-3 m-3">
-    @for (movie of movies; track movie.id) {
-    <div class="col-lg-2 col-md-4 col-sm-6 col-6" routerLink='details'>
-        <div class="movie-card">
-            <div class="poster-wrapper position-relative">
-                <img [src]="movie.poster_path" class="img-fluid rounded shadow" />
-                <div class="rating-circle bg-dark text-white d-flex align-items-center justify-content-center">
-                    {{ (movie.vote_average * 10) | number: '1.0-0' }}
-                </div>
-            </div>
-            <h6 class="mt-4 mb-0 fw-semibold">{{ movie.title }}</h6>
-            <p class="text-muted small mb-0">
-                {{ movie.release_date | date: 'MMM dd, yyyy' }}
-            </p>
+  @for (movie of movies; track movie.id) {
+    <div class="col-lg-2 col-md-4 col-sm-6 col-6">
+      <div class="movie-card">
+        <div class="poster-wrapper position-relative">
+          <img 
+            [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" 
+            class="img-fluid rounded shadow" 
+          />
+
+          <div class="rating-circle bg-dark text-white d-flex align-items-center justify-content-center">
+            {{ (movie.vote_average * 10) | number: '1.0-0' }}
+          </div>
+
+          <div class="icon-wrapper position-absolute top-0 end-0 p-2 d-flex flex-column gap-2">
+            <i 
+              class="bi"
+              [ngClass]="movie.inWatchlist ? 'bi-bookmark-fill text-warning fs-5' : 'bi-bookmark text-white fs-5'"
+              (click)="toggleWatchlist(movie, $event)">
+            </i>
+
+            <i 
+              class="bi"
+              [ngClass]="movie.inFav ? 'bi-heart-fill text-danger fs-5' : 'bi-heart text-white fs-5'"
+              (click)="toggleFavorite(movie, $event)">
+            </i>
+          </div>
         </div>
+
+        <h6 class="mt-4 mb-0 fw-semibold">{{ movie.title }}</h6>
+        <p class="text-muted small mb-0">{{ movie.release_date | date: 'MMM dd, yyyy' }}</p>
+      </div>
     </div>
-    }
+  }
 </div>
