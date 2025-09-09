@@ -55,7 +55,9 @@ login(username: string, password: string): Observable<any> {
 
 
   get(endpoint: string): Observable<any> {
-    return this.http.get(`https://api.themoviedb.org/3/${endpoint}?api_key=a6493890665a35d49413ed72aa7c489c`)
+      const separator = endpoint.includes('?') ? '&' : '?';
+
+    return this.http.get(`https://api.themoviedb.org/3/${endpoint}${separator}api_key=a6493890665a35d49413ed72aa7c489c`)
   }
  post(body: any, endpoint: string): Observable<any> {
   // لو الـ endpoint فيه أصلاً '?'

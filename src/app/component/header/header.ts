@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -8,5 +8,6 @@ import { RouterLink } from '@angular/router';
   styleUrl: './header.css'
 })
 export class Header {
+@Input() favCount: number = 0;
 
 }
