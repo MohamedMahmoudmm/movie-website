@@ -11,8 +11,6 @@ apiKey = 'a6493890665a35d49413ed72aa7c489c';
 request_token:string=''
 
 
-    
-
 login(username: string, password: string): Observable<any> {
   return this.http
     // Step 1: Get request token
@@ -50,25 +48,24 @@ login(username: string, password: string): Observable<any> {
     );
 }
 
+ get(endpoint: string, params?: Record<string, any>): Observable<any> {
+  let url = `https://api.themoviedb.org/3/${endpoint}?api_key=${this.apiKey}`;
 
-
-
-
-  get(endpoint: string): Observable<any> {
-    return this.http.get(`https://api.themoviedb.org/3/${endpoint}?api_key=a6493890665a35d49413ed72aa7c489c`)
+  if (params) {
+    const query = new URLSearchParams(params).toString();
+    url += `&${query}`;
   }
+
+  return this.http.get(url);
+ }
+
  post(body: any, endpoint: string): Observable<any> {
   // لو الـ endpoint فيه أصلاً '?'
   const separator = endpoint.includes('?') ? '&' : '?';
 
   return this.http.post(
-    `https://api.themoviedb.org/3/${endpoint}${separator}api_key=a6493890665a35d49413ed72aa7c489c`, 
+    `https://api.themoviedb.org/3/${endpoint}${separator}api_key=${this.apiKey}`,
     body
   );
 }
-
-  
-
- 
-  
 }

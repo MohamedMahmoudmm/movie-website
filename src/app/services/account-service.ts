@@ -2,15 +2,17 @@ import { Injectable, inject } from '@angular/core';
 import { HttpService } from './http-service';
 import { UserModel } from '../models/user-model';
 import { Observable } from 'rxjs';
+import { Login } from '../component/login/login';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccountService {
   private httpService = inject(HttpService);
+  readonly sessionId = localStorage.getItem('session_id');
 
   getAccountDetails(): Observable<UserModel> {
-    return this.httpService.get('account');
+    return this.httpService.get('account', { session_id: this.sessionId });
   }
 
   getProfileImage(user: UserModel): string | null {
