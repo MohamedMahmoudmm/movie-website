@@ -20,8 +20,8 @@
     @if (!isEditingImage) {
       <div class="d-flex align-items-start gap-4 mt-3">
         <div class="avatar-wrapper">
-          @if (savedProfileImage) {
-            <img [src]="savedProfileImage" alt="Profile" class="profile-circle" />
+          @if (profileImage) {
+            <img [src]="profileImage" alt="Profile" class="profile-circle" />
           } @else {
             <div class="avatar-placeholder rounded-circle w-100 h-100">M</div>
           }

@@ -68,7 +68,7 @@ export class EditProfile implements OnInit {
 
   // open image editor (store existing image into temp)
   openImageEditor(): void {
-    this.tempProfileImage = this.savedProfileImage;
+    this.tempProfileImage = this.profileImage;
     this.isEditingImage = true;
     this.isImageSelected = !!this.tempProfileImage;
     this.scaleValue = 1;
