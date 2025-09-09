@@ -49,6 +49,11 @@ login(username: string, password: string): Observable<any> {
 }
 
 get(endpoint: string, params?: Record<string, any>): Observable<any> {
+   const separator = endpoint.includes('?') ? '&' : '?';
+
+  return this.http.get(
+    `https://api.themoviedb.org/3/${endpoint}${separator}api_key=${this.apiKey}`);
+
   let url = `https://api.themoviedb.org/3/${endpoint}?api_key=${this.apiKey}`;
 
 
