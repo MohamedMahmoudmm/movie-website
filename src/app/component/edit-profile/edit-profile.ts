@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { AccountService } from '../../services/account-service';
+import { UserModel } from '../../models/user-model';
 
 @Component({
   selector: 'app-edit-profile',
@@ -9,10 +11,12 @@ import { RouterModule } from '@angular/router';
   templateUrl: './edit-profile.html',
   styleUrl: './edit-profile.css',
 })
-export class EditProfile {
+export class EditProfile implements OnInit {
+  private accountService = inject(AccountService)
+
   // User profile
-  username: string = 'montaser';
-  fullName: string = 'Montaser Ismail';
+  username: string = 'Montaser';
+  fullName: string = '';
   profileImage: string | null = null;
 
   // image
@@ -39,6 +43,22 @@ export class EditProfile {
   private originalUsername = '';
   private originalFullName = '';
 
+  ngOnInit(): void {
+    this.loadUserData();
+  }
+
+  loadUserData() {
+    this.accountService.getAccountDetails().subscribe({
+      next: (user: UserModel) => {
+        this.username = user?.username
+        this.fullName = user?.name
+        this.profileImage = this.accountService.getProfileImage(user);
+      },
+      error: (err) => {
+        console.error('Failed to load user details',err)
+      }
+    })
+  }
   // computed transform string: keeps the image centered and applies drag offsets + scale
   get imageTransform(): string {
     // translate(-50%,-50%) keeps the image centered inside the wrapper,

@@ -48,7 +48,7 @@
                   (mousedown)="startDrag($event)"
                 />
               } @else {
-                <div class="avatar-placeholder rounded-circle w-100 h-100">MI</div>
+                <div class="avatar-placeholder rounded-circle w-100 h-100">{{username.slice(0,1)|uppercase}}</div>
               }
             </div>
 
