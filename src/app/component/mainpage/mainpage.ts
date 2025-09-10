@@ -14,32 +14,52 @@ import { Footer } from '../footer/footer';
 })
 export class Mainpage {
   movies: MovieModel[] = [];
-
-  sessionId: string | null = '257779405c116d07a85e34239541134469da2573';
+  favList:MovieModel[]=[]
 
   // Pagination state
   totalPages: number = 1;
   currentPage: number = 1;
 
-  constructor(private http: HttpService) {
-    // this.sessionId = localStorage.getItem('session_id');
-    console.log(this.sessionId);
+  sessionId : string ='';
+  constructor(private http : HttpService){
   }
 
-  ngOnInit() {
+   ngOnInit() {
+    this.sessionId = localStorage.getItem('session_id')??'';
+
     this.getAllMovie();
+    this.getFav();
+  }
+ getFav(){
+    this.http.get(`account/21908959/favorite/movies?session_id=${this.sessionId}`).subscribe({
+      next: (movies) => {
+        console.log(movies.results);
+        this.favList = movies.results
+        this.updateFavOnMainPage()
+      }
+    })
   }
   getAllMovie(page: number = 1) {
     this.http.get('movie/popular', {page:`${page}`}).subscribe({
       next: (movies) => {
+        console.log(movies.results);
+        
         this.movies = movies.results;
         this.totalPages = 500;
         this.currentPage = movies.page;
-      },
-    });
+        this.updateFavOnMainPage()
+      }
+    })
   }
 
   onPageChange(page: number) {
     this.getAllMovie(page);
+  }
+
+  updateFavOnMainPage(){
+  const favIds = new Set(this.favList.map(f => f.id));
+  this.movies.forEach(m => {
+    m.inFav = favIds.has(m.id);  // update the flag
+  });
   }
 }
