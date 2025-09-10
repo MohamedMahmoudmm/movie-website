@@ -25,7 +25,8 @@ export class Mainpage {
   }
 
    ngOnInit() {
-    this.sessionId = localStorage.getItem('session_id')??'';
+    this.sessionId =
+      localStorage.getItem('session_id') ?? '257779405c116d07a85e34239541134469da2573';
 
     this.getAllMovie();
     this.getFav();
@@ -43,7 +44,7 @@ export class Mainpage {
     this.http.get('movie/popular', {page:`${page}`}).subscribe({
       next: (movies) => {
         console.log(movies.results);
-        
+
         this.movies = movies.results;
         this.totalPages = Math.min(movies.total_pages,500);
         this.currentPage = movies.page;
