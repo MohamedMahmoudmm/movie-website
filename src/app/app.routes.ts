@@ -15,8 +15,8 @@ export const routes: Routes = [
   { path: 'register', component: Register, title: 'register' },
   { path: 'favorites', component: Wishlist, title: 'favorites' },
   {path : 'details' , component:Details,title:'Details'},
+  { path: 'details/:id', component: Details,title:'Details' },
   { path: 'account-details', component: AccountDetails, title: 'AccountDetails' },
   { path: 'edit-profile', component: EditProfile, title: 'EditProfile' },
-
-  { path: '**', redirectTo: '' },
+  { path: '**', redirectTo: '' },
 ];
