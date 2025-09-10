@@ -1,43 +1,53 @@
-<div class="row">
-    <!-- Poster -->
-    <div class="col-md-4">
-      <img src="https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg" alt="Black Widow"
-        class="movie-poster" />
-    </div>
-
-    <!-- Details -->
-    <div class="col-md-8">
-      <h2>Black Widow</h2>
-      <p class="text-muted">Sep 25, 2017</p>
-      <div class="d-flex align-items-center mb-2">
-        <i class="bi bi-star-fill text-warning"></i>
-        <i class="bi bi-star-fill text-warning"></i>
-        <i class="bi bi-star-fill text-warning"></i>
-        <i class="bi bi-star-fill text-warning"></i>
-        <i class="bi bi-star"></i>
-        <span class="ms-2">3288</span>
-        <i class="bi bi-heart ms-auto fs-4 text-warning"></i>
-      </div>
-      <p>
-        Natasha Romanoff, also known as Black Widow, confronts the darker parts of her ledger
-        when a dangerous conspiracy with ties to her past arises.
-      </p>
-
-      <!-- Genres -->
-      <div class="mb-3">
-        <button class="btn btn-warning btn-sm genre-btn">Action</button>
-        <button class="btn btn-warning btn-sm genre-btn">Crime</button>
-        <button class="btn btn-warning btn-sm genre-btn">Thriller</button>
-      </div>
-
-      <!-- Extra Info -->
-      <p><strong>Duration:</strong> 134 Min</p>
-      <p><strong>Language:</strong> English</p>
-      <p>
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Marvel_Studios_logo.svg/2560px-Marvel_Studios_logo.svg.png"
-          alt="Marvel Studios" width="120" />
-      </p>
-      <a href="#" class="btn btn-outline-dark">Website <i class="bi bi-box-arrow-up-right"></i></a>
-    </div>
+<div class="row" *ngIf="movie">
+  <!-- Poster -->
+  <div class="col-md-4">
+    <img 
+      [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+      [alt]="movie.title"
+      class="movie-poster img-fluid rounded shadow" />
   </div>
+
+  <!-- Details -->
+  <div class="col-md-8">
+    <h2>{{ movie.title }}</h2>
+    <p class="text-muted">{{ movie.release_date | date: 'MMM dd, yyyy' }}</p>
+
+    <!-- Rating -->
+    <div class="d-flex align-items-center mb-2">
+      <i *ngFor="let star of getStars(movie.vote_average)" class="bi" [ngClass]="star"></i>
+      <span class="ms-2">{{ movie.vote_count }}</span>
+      <i class="bi bi-heart ms-auto fs-4 text-warning"></i>
+    </div>
+
+    <!-- Overview -->
+    <p>{{ movie.overview }}</p>
+
+    <!-- Genres -->
+    <div class="mb-3">
+      <button 
+        *ngFor="let genre of movie.genres" 
+        class="btn btn-warning btn-sm genre-btn me-2">
+        {{ genre.name }}
+      </button>
+    </div>
+
+    <!-- Extra Info -->
+    <p><strong>Duration:</strong> {{ movie.runtime }} Min</p>
+    <p><strong>Language:</strong> {{ movie.original_language | uppercase }}</p>
+
+    <!-- Company Logo -->
+    <p *ngIf="movie.production_companies?.length">
+      <img 
+        *ngIf="movie.production_companies[0].logo_path" 
+        [src]="'https://image.tmdb.org/t/p/w200' + movie.production_companies[0].logo_path" 
+        [alt]="movie.production_companies[0].name" 
+        width="120"
+      />
+    </p>
+
+    <!-- Homepage -->
+    <a *ngIf="movie.homepage" [href]="movie.homepage" target="_blank" class="btn btn-outline-dark">
+      Website <i class="bi bi-box-arrow-up-right"></i>
+    </a>
+  </div>
+</div>
