@@ -21,13 +21,13 @@ export class Mainpage {
   currentPage: number = 1;
 
   sessionId : string ='';
-  constructor(private http : HttpService){  
+  constructor(private http : HttpService){
   }
 
    ngOnInit() {
     this.sessionId = localStorage.getItem('session_id')??'';
-   
-    this.getAllMovie(); 
+
+    this.getAllMovie();
     this.getFav();
   }
  getFav(){
@@ -45,17 +45,17 @@ export class Mainpage {
         console.log(movies.results);
         
         this.movies = movies.results;
-        this.totalPages = movies.total_pages;
+        this.totalPages = Math.min(movies.total_pages,500);
         this.currentPage = movies.page;
         this.updateFavOnMainPage()
       }
     })
   }
-  
+
   onPageChange(page: number) {
     this.getAllMovie(page);
   }
-  
+
   updateFavOnMainPage(){
   const favIds = new Set(this.favList.map(f => f.id));
   this.movies.forEach(m => {
