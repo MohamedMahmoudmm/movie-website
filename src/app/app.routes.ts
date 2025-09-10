@@ -18,5 +18,6 @@ export const routes: Routes = [
   { path: 'details/:id', component: Details,title:'Details' },
   { path: 'account-details', component: AccountDetails, title: 'AccountDetails' },
   { path: 'edit-profile', component: EditProfile, title: 'EditProfile' },
-  { path: '**', redirectTo: '' },
+
+  { path: '**', redirectTo: '' },
 ];

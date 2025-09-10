@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Header } from '../header/header';
 import { CardComponents } from '../card-components/card-components';
 import { MovieDetailsComponent } from '../movie-details-component/movie-details-component';
@@ -7,32 +7,31 @@ import { MovieModel } from '../../models/movie-model';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
 
-
 @Component({
   selector: 'app-details',
-  standalone: true,
-  imports: [Header, CardComponents, MovieDetailsComponent, RouterLink],
+  imports: [Header,CardComponents,MovieDetailsComponent,RouterLink],
   templateUrl: './details.html',
-  styleUrls: ['./details.css']
+  styleUrl: './details.css'
 })
 
-export class Details implements OnInit {
-  movies: MovieModel[] = [];
-  movie: MovieModel | null = null;
-  apiKey = 'a6493890665a35d49413ed72aa7c489c';
-  genres: any[] = [];
-  movieId: string = '';
+export class Details {
+  movies : MovieModel[] = []
+  movie : any
+  apiKey = 'a6493890665a35d49413ed72aa7c489c'
+  genres : any[] = []
+  movieId : any
+  constructor(private http: HttpService, private route: ActivatedRoute) {
 
-  constructor(private http: HttpService, private route: ActivatedRoute) {}
+  }
 
-  ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.movieId = params['id'];
+    ngOnInit() {
+      this.route.params.subscribe(params => {
+       this.movieId = params['id'];
       this.http.get(`movie/${this.movieId}?api_key=${this.apiKey}`).subscribe(data => {
         this.movie = data;
       });
-      this.getRecommendtions();
     });
+    this.getRecommendtions()
   }
 
 /* getAllGenre()
@@ -46,12 +45,14 @@ export class Details implements OnInit {
   }
     */
 
-  getRecommendtions() {
+  getRecommendtions()
+  {
     this.http.get(`movie/${this.movieId}/recommendations?api_key=${this.apiKey}`).subscribe({
-      next: (movies: any) => {
+      next: (movies) => {
         console.log(movies.results);
-        this.movies = movies.results;
+        this.movies = movies.results
       }
-    });
+    })
+    
   }
 }

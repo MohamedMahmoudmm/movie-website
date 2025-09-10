@@ -6,15 +6,16 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-movie-details-component',
   templateUrl: './movie-details-component.html',
-  styleUrls: ['./movie-details-component.css'],
-  imports: [CommonModule],
+  styleUrl: './movie-details-component.css',
+  imports: [CommonModule,],
   standalone: true
 })
-export class MovieDetailsComponent implements OnInit {
-  movie: any;
+export class MovieDetailsComponent{
+   movie: any;
   apiKey = 'a6493890665a35d49413ed72aa7c489c';
 
-  constructor(private route: ActivatedRoute, private http: HttpService) {}
+  constructor(private route: ActivatedRoute, private http: HttpService) {
+  }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -24,7 +25,7 @@ export class MovieDetailsComponent implements OnInit {
       });
     });
   }
-  getStars(vote: number): string[] {
+   getStars(vote: number): string[] {
     const stars: string[] = [];
     const rating = Math.round(vote / 2); // TMDB = 10 → 5 stars
     for (let i = 1; i <= 5; i++) {

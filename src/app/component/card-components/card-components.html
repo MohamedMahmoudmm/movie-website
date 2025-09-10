@@ -2,30 +2,46 @@
   @for (movie of movies; track movie.id) {
     <div class="col-lg-2 col-md-4 col-sm-6 col-6">
       <div class="movie-card">
-        <div class="poster-wrapper position-relative">
-          <img 
-            [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" 
-            class="img-fluid rounded shadow" 
-          />
-          <div class="rating-circle bg-dark text-white d-flex align-items-center justify-content-center">
-            {{ (movie.vote_average * 10) | number: '1.0-0' }}
+        
+        <!-- Poster -->
+        <a [routerLink]="['/details', movie.id]">  
+          <div class="poster-wrapper position-relative">
+            <img 
+              [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" 
+              class="img-fluid rounded shadow" 
+            />
+
+            <div class="rating-circle bg-dark text-white d-flex align-items-center justify-content-center">
+              {{ (movie.vote_average * 10) | number: '1.0-0' }}
+            </div>
           </div>
-          <div class="icon-wrapper position-absolute top-0 end-0 p-2 d-flex flex-column gap-2">
+        </a>
+
+        <!-- Title + Icons -->
+        <div class="d-flex align-items-center justify-content-between mt-3">
+          <div>
+            <a [routerLink]="['/details', movie.id]" class="text-decoration-none text-dark">
+              <h6 class="mb-0 fw-semibold">{{ movie.title }}</h6>
+            </a>
+            <p class="text-muted small mb-0">{{ movie.release_date | date: 'MMM dd, yyyy' }}</p>
+          </div>
+
+          <!-- Icons -->
+          <div class="d-flex flex-column gap-1 ms-2">
             <i 
               class="bi"
-              [ngClass]="movie.inWatchlist ? 'bi-bookmark-fill text-warning fs-5' : 'bi-bookmark text-white fs-5'"
+              [ngClass]="movie.inWatchlist ? 'bi-bookmark-fill text-warning fs-6' : 'bi-bookmark text-dark fs-6'"
               (click)="toggleWatchlist(movie, $event)">
             </i>
+
             <i 
               class="bi"
-              [ngClass]="movie.inFav ? 'bi-heart-fill text-danger fs-5' : 'bi-heart text-white fs-5'"
+              [ngClass]="movie.inFav ? 'bi-heart-fill text-danger fs-6' : 'bi-heart text-dark fs-6'"
               (click)="toggleFavorite(movie, $event)">
             </i>
           </div>
         </div>
 
-        <h6 class="mt-4 mb-0 fw-semibold">{{ movie.title }}</h6>
-        <p class="text-muted small mb-0">{{ movie.release_date | date: 'MMM dd, yyyy' }}</p>
       </div>
     </div>
   }
