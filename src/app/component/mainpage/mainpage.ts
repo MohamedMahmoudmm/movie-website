@@ -33,7 +33,7 @@ export class Mainpage {
     this.http.get('movie/popular', {page:`${page}`}).subscribe({
       next: (movies) => {
         this.movies = movies.results;
-        this.totalPages = movies.total_pages;
+        this.totalPages = 500;
         this.currentPage = movies.page;
       },
     });
