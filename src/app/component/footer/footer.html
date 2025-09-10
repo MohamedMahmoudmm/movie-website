@@ -1,1 +1,46 @@
-<p>footer works!</p>
+<div class="pagination d-flex justify-content-center">
+
+  <!-- Prev Btn -->
+  <button
+    class="pagination__btn"
+    [disabled]="currentPage == 1"
+    (click)="changePage(currentPage - 1)">
+    &laquo;
+  </button>
+
+  <!-- Render Pages -->
+  @for (page of pages; track $index) {
+      <!-- Dots -->
+      @if(page == '...') {
+        <button class="pagination__btn" disabled>.....</button>
+      }
+      <!-- Numbers -->
+      @else {
+        <button
+          class="pagination__btn"
+          [class.pagination__btn--active]="page == currentPage"
+          [attr.aria-current]="page == currentPage ? 'page' : null"
+          [disabled]="page == currentPage"
+          (click)="changePage(page)">
+          {{ page }}
+        </button>
+      }
+  }
+
+  <!-- Next Btn -->
+  <button
+    class="pagination__btn"
+    [disabled]="currentPage == totalPages"
+    (click)="changePage(currentPage + 1)">
+    &raquo;
+  </button>
+
+</div>
+<!-- Footer Info -->
+<div class="footer-info text-center mt-4">
+  <p class="mb-1">&copy; 2025 Movie Website. All rights reserved.</p>
+  <p class="mb-1">
+    <a href="mailto:support@moviewebsite.com">Contact Us</a> |
+    <a href="/faq">FAQ</a>
+  </p>
+</div>
