@@ -8,3 +8,9 @@
 >
 
 </app-card-components>
+
+<app-footer
+  [totalPages]="totalPages"
+  [currentPage]="currentPage"
+  (pageChange)="onPageChange($event)">
+</app-footer>
