@@ -3,12 +3,21 @@
 
   <div class="d-flex align-items-center gap-3">
     <div class="dropdown">
-      <a class="btn btn-light btn-sm dropdown-toggle fw-semibold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        EN
+      <a
+        class="btn btn-light btn-sm dropdown-toggle fw-semibold"
+        href="#"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        {{ currentLang.toUpperCase() }}
       </a>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">EN</a></li>
-        <li><a class="dropdown-item" href="#">AR</a></li>
+        @for(lang of languages; track lang) {
+        <li>
+          <a class="dropdown-item" href="#" (click)="changeLanguage(lang)">{{ lang.toUpperCase() }}</a>
+        </li>
+        }
       </ul>
     </div>
 
