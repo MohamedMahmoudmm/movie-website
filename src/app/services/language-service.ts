@@ -4,10 +4,11 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class LanguageService {
-  private langSubject = new BehaviorSubject<string>('en');
+  public langSubject = new BehaviorSubject<string>('en');
   lang$ = this.langSubject.asObservable();
 
   setLanguage(lang: string) {
     this.langSubject.next(lang);
+    localStorage.setItem('lang', `${lang}`);
   }
 }

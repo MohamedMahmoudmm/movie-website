@@ -11,7 +11,7 @@ import { LanguageService } from '../../services/language-service';
 export class Header {
   @Input() favCount: number = 0;
   languages: string[] = ['en', 'ar', 'fr', 'zh'];
-  currentLang: string = 'en';
+  currentLang: string = localStorage.getItem('lang') ?? 'en';
 
   private langService = inject(LanguageService)
 

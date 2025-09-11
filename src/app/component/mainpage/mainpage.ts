@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Header } from '../header/header';
 import { Search } from '../search/search';
 import { CardComponents } from '../card-components/card-components';
@@ -16,16 +16,15 @@ export class Mainpage {
   movies: MovieModel[] = [];
   favList:MovieModel[]=[];
   watchList:MovieModel[]=[];
-  
+
   // Pagination state
   totalPages: number = 1;
   currentPage: number = 1;
 
-  sessionId : string ='';
-  constructor(private http : HttpService){
-  }
+  sessionId: string = '';
+  constructor(private http: HttpService) {}
 
-   ngOnInit() {
+  ngOnInit() {
     this.sessionId =
       localStorage.getItem('session_id') ?? '257779405c116d07a85e34239541134469da2573';
 
@@ -33,56 +32,54 @@ export class Mainpage {
     this.getFav();
     this.getWatchList();
   }
- getFav(){
+  getFav() {
     this.http.get(`account/21908959/favorite/movies?session_id=${this.sessionId}`).subscribe({
       next: (movies) => {
-        console.log(movies.results);
-        this.favList = movies.results
-        this.updateFavOnMainPage()
-      }
-    })
+        console.log('favList', movies.results);
+        this.favList = movies.results;
+        this.updateFavOnMainPage();
+      },
+    });
   }
- getWatchList(){
+  getWatchList() {
     this.http.get(`account/21908959/watchlist/movies?session_id=${this.sessionId}`).subscribe({
       next: (movies) => {
-        console.log(movies.results);
-        this.watchList = movies.results
-        this.updateWatchOnMainPage()
-      }
-    })
+        console.log('watchList', movies.results);
+        this.watchList = movies.results;
+        this.updateWatchOnMainPage();
+      },
+    });
   }
- 
+
   getAllMovie(page: number = 1) {
     this.http.get(`movie/popular?page=${page}`).subscribe({
       next: (movies) => {
-        console.log(movies.results);
+        console.log('fetched movies', movies.results);
 
         this.movies = movies.results;
-        this.totalPages = Math.min(movies.total_pages,500);
+        this.totalPages = Math.min(movies.total_pages, 500);
         this.currentPage = movies.page;
-        this.updateFavOnMainPage()
-        this.updateWatchOnMainPage()
-      }
-    })
+        this.updateFavOnMainPage();
+        this.updateWatchOnMainPage();
+      },
+    });
   }
 
   onPageChange(page: number) {
     this.getAllMovie(page);
   }
 
-  updateFavOnMainPage(){
-  const favIds = new Set(this.favList.map(f => f.id));
-  this.movies.forEach(m => {
-    m.inFav = favIds.has(m.id);  // update the flag
-  });
+  updateFavOnMainPage() {
+    const favIds = new Set(this.favList.map((f) => f.id));
+    this.movies.forEach((m) => {
+      m.inFav = favIds.has(m.id); // update the flag
+    });
   }
 
-  updateWatchOnMainPage(){
-    
-
-  const favIds = new Set(this.watchList.map(f => f.id));
-  this.movies.forEach(m => {
-    m.inWatchlist = favIds.has(m.id);  // ✅ update the flag
-  });
+  updateWatchOnMainPage() {
+    const favIds = new Set(this.watchList.map((f) => f.id));
+    this.movies.forEach((m) => {
+      m.inWatchlist = favIds.has(m.id); // ✅ update the flag
+    });
   }
 }
