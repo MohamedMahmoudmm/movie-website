@@ -6,10 +6,11 @@ import { Details } from './component/details/details';
 import { Header } from './component/header/header';
 import { AccountDetails } from './component/account-details/account-details';
 import { EditProfile } from './component/edit-profile/edit-profile';
+import { Wishlist} from './component/wishlist/wishlist'
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Details, AccountDetails, EditProfile],
+  imports: [RouterOutlet, Details, AccountDetails, EditProfile , Wishlist],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

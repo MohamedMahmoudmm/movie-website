@@ -6,6 +6,7 @@ import { Login } from './component/login/login';
 import { Register } from './component/register/register';
 import { AccountDetails } from './component/account-details/account-details';
 import { EditProfile } from './component/edit-profile/edit-profile';
+import { Wishlist} from './component/wishlist/wishlist'
 
 export const routes: Routes = [
   { path: '', component: Mainpage, title: 'Movie App' },
@@ -15,6 +16,8 @@ export const routes: Routes = [
   {path : 'details' , component:Details,title:'Details'},
   { path: 'account-details', component: AccountDetails, title: 'AccountDetails' },
   { path: 'edit-profile', component: EditProfile, title: 'EditProfile' },
+  { path: 'Wishlist', component: Wishlist, title: 'Wishlist' },
+
 
   { path: '**', redirectTo: '' },
 ];
