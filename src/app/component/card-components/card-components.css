@@ -29,3 +29,18 @@
         font-weight: bold;
         border: 2px solid #28a745;
         }
+        .icon-wrapper {
+  z-index: 10;
+}
+
+.icon-wrapper i {
+  cursor: pointer;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.icon-wrapper i:hover {
+  transform: scale(1.2);
+  color: #ffc107;
+}
+
+

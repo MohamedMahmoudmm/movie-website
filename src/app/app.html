@@ -1,5 +1,10 @@
+    <app-header [favCount]="services.favList.length"></app-header>
+<div [class.rtl]="currentLang === 'ar'" [class.ltr]="currentLang !== 'ar'">
 
 <main class="">
     <router-outlet></router-outlet>
 </main>
+</div>
+<app-scroll-to-top></app-scroll-to-top>
+
 

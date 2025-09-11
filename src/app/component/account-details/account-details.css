@@ -61,22 +61,22 @@
 /* Watched Card */
 .watched-card {
   background: #575757a9;
-  border-radius: 12px;
-  width: 150px;
-  flex-shrink: 0;
+  border-radius: 10px;
+  width: 180px;
+  min-height: 300px;
+  overflow: hidden;
 }
 
 .poster-img {
-  height: 200px;
+  width: 100%;
+  height: 280px;
   object-fit: cover;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
 }
 
 /* Scroll Buttons */
 .scroll-btn {
   position: absolute;
-  top: 50%;
+  top: 40%;
   transform: translateY(-50%);
   background: rgba(0, 0, 0, 0.241);
   border: none;
@@ -86,7 +86,6 @@
   border-radius: 50%;
   cursor: pointer;
   z-index: 2;
-  transition: background 0.2s ease;
 }
 
 .scroll-btn:hover {

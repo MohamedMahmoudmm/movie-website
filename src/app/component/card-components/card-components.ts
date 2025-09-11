@@ -1,200 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { MovieModel } from '../../models/movie-model';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from "@angular/router";
+import { RouterLink } from '@angular/router';
+import { HttpService } from '../../services/http-service';
+import { AccountService } from '../../services/account-service';
+import { CommonServices } from '../../services/common-services';
 
 @Component({
   selector: 'app-card-components',
   imports: [CommonModule, RouterLink],
   templateUrl: './card-components.html',
-  styleUrl: './card-components.css'
+  styleUrl: './card-components.css',
 })
 export class CardComponents {
+  @Input() movies: MovieModel[] = [];
 
-  movies: MovieModel[] = [
-    {
-      adult: false,
-      backdrop_path: '',
-      genre_ids: [18],
-      id: 1,
-      original_language: 'en',
-      original_title: 'My Fault',
-      overview: 'Some text...',
-      popularity: 200,
-      poster_path: 'https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg',
-      release_date: '2023-06-08',
-      title: 'My Fault',
-      video: false,
-      vote_average: 8.1,
-      vote_count: 1200
-    },
-        {
-      adult: false,
-      backdrop_path: '',
-      genre_ids: [18],
-      id: 1,
-      original_language: 'en',
-      original_title: 'My Fault',
-      overview: 'Some text...',
-      popularity: 200,
-      poster_path: 'https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg',
-      release_date: '2023-06-08',
-      title: 'My Fault',
-      video: false,
-      vote_average: 8.1,
-      vote_count: 1200
-    },    {
-      adult: false,
-      backdrop_path: '',
-      genre_ids: [18],
-      id: 1,
-      original_language: 'en',
-      original_title: 'My Fault',
-      overview: 'Some text...',
-      popularity: 200,
-      poster_path: 'https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg',
-      release_date: '2023-06-08',
-      title: 'My Fault',
-      video: false,
-      vote_average: 8.1,
-      vote_count: 1200
-    },    {
-      adult: false,
-      backdrop_path: '',
-      genre_ids: [18],
-      id: 1,
-      original_language: 'en',
-      original_title: 'My Fault',
-      overview: 'Some text...',
-      popularity: 200,
-      poster_path: 'https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg',
-      release_date: '2023-06-08',
-      title: 'My Fault',
-      video: false,
-      vote_average: 8.1,
-      vote_count: 1200
-    },    {
-      adult: false,
-      backdrop_path: '',
-      genre_ids: [18],
-      id: 1,
-      original_language: 'en',
-      original_title: 'My Fault',
-      overview: 'Some text...',
-      popularity: 200,
-      poster_path: 'https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg',
-      release_date: '2023-06-08',
-      title: 'My Fault',
-      video: false,
-      vote_average: 8.1,
-      vote_count: 1200
-    },    {
-      adult: false,
-      backdrop_path: '',
-      genre_ids: [18],
-      id: 1,
-      original_language: 'en',
-      original_title: 'My Fault',
-      overview: 'Some text...',
-      popularity: 200,
-      poster_path: 'https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg',
-      release_date: '2023-06-08',
-      title: 'My Fault',
-      video: false,
-      vote_average: 8.1,
-      vote_count: 1200
-    },    {
-      adult: false,
-      backdrop_path: '',
-      genre_ids: [18],
-      id: 1,
-      original_language: 'en',
-      original_title: 'My Fault',
-      overview: 'Some text...',
-      popularity: 200,
-      poster_path: 'https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg',
-      release_date: '2023-06-08',
-      title: 'My Fault',
-      video: false,
-      vote_average: 8.1,
-      vote_count: 1200
-    },    {
-      adult: false,
-      backdrop_path: '',
-      genre_ids: [18],
-      id: 1,
-      original_language: 'en',
-      original_title: 'My Fault',
-      overview: 'Some text...',
-      popularity: 200,
-      poster_path: 'https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg',
-      release_date: '2023-06-08',
-      title: 'My Fault',
-      video: false,
-      vote_average: 8.1,
-      vote_count: 1200
-    },    {
-      adult: false,
-      backdrop_path: '',
-      genre_ids: [18],
-      id: 1,
-      original_language: 'en',
-      original_title: 'My Fault',
-      overview: 'Some text...',
-      popularity: 200,
-      poster_path: 'https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg',
-      release_date: '2023-06-08',
-      title: 'My Fault',
-      video: false,
-      vote_average: 8.1,
-      vote_count: 1200
-    },    {
-      adult: false,
-      backdrop_path: '',
-      genre_ids: [18],
-      id: 1,
-      original_language: 'en',
-      original_title: 'My Fault',
-      overview: 'Some text...',
-      popularity: 200,
-      poster_path: 'https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg',
-      release_date: '2023-06-08',
-      title: 'My Fault',
-      video: false,
-      vote_average: 8.1,
-      vote_count: 1200
-    },    {
-      adult: false,
-      backdrop_path: '',
-      genre_ids: [18],
-      id: 1,
-      original_language: 'en',
-      original_title: 'My Fault',
-      overview: 'Some text...',
-      popularity: 200,
-      poster_path: 'https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg',
-      release_date: '2023-06-08',
-      title: 'My Fault',
-      video: false,
-      vote_average: 8.1,
-      vote_count: 1200
-    },
-     {
-      adult: false,
-      backdrop_path: '',
-      genre_ids: [18],
-      id: 1,
-      original_language: 'en',
-      original_title: 'My Fault',
-      overview: 'Some text...',
-      popularity: 200,
-      poster_path: 'https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg',
-      release_date: '2023-06-08',
-      title: 'My Fault',
-      video: false,
-      vote_average: 8.1,
-      vote_count: 1200
-    },
-  ];
+  
+  constructor(public services: CommonServices) {
+ 
+  }
 
+ 
 }

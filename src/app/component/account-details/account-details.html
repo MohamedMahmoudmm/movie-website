@@ -16,14 +16,14 @@
         <div
           class="avatar-placeholder d-flex align-items-center justify-content-center text-white fw-bold fs-2 rounded w-100 h-100"
         >
-          M
+          {{user?.username?.slice(0,1)|uppercase}}
         </div>
         }
       </div>
 
       <!-- Profile Info -->
       <div class="profile-info flex-grow-1">
-        <h3 class="mb-1">{{ username }}</h3>
+        <h3 class="mb-1">{{ user?.name }}</h3>
         <p class="text-muted mb-0 small">
           <i class="bi bi-calendar4 me-1 text-white"></i
           ><span class="text-white">Joined {{ joinedYear }}</span>
@@ -32,7 +32,7 @@
 
       <!-- Top Right Edit Button -->
       <div class="position-absolute top-0 end-0 p-3">
-        <button class="btn btn-link text-white fw-bold p-0 text-decoration-none">Edit Profile</button>
+        <button [routerLink]="['/edit-profile']" class="btn btn-link text-white fw-bold p-0 text-decoration-none">Edit Profile</button>
       </div>
     </section>
 
@@ -54,12 +54,12 @@
       <!-- Horizontal scroll container -->
       <div class="watched-container position-relative">
         <!-- Left Arrow -->
-        <button class="scroll-btn left">
+        <button class="scroll-btn left" (click)="scrollLeft()">
           <i class="bi bi-chevron-left"></i>
         </button>
 
         <!-- Cards -->
-        <div class="watched-scroll d-flex overflow-auto align-items-center">
+        <div #scrollContainer class="watched-scroll d-flex overflow-auto align-items-center">
           @for (item of recent; track item.id) {
           <div class="watched-card card border-0 me-3 flex-shrink-0">
             <img [src]="item.poster" [alt]="item.title" class="card-img-top poster-img" />
@@ -75,7 +75,7 @@
 
         <!-- Right Arrow -->
         <button class="scroll-btn right">
-          <i class="bi bi-chevron-right"></i>
+          <i class="bi bi-chevron-right" (click)="scrollRight()"></i>
         </button>
       </div>
 

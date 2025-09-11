@@ -1,17 +1,27 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Login } from './component/login/login';
-import { Register } from './component/register/register';
-import { Details } from './component/details/details';
+import { LanguageService } from './services/language-service';
+import { ScrollToTop } from './component/scroll-to-top/scroll-to-top';
 import { Header } from './component/header/header';
-import { AccountDetails } from './component/account-details/account-details';
-import { EditProfile } from './component/edit-profile/edit-profile';
-import { Wishlist} from './component/wishlist/wishlist'
+import { CommonServices } from './services/common-services';
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Details, AccountDetails, EditProfile , Wishlist],
+  imports: [RouterOutlet, ScrollToTop,Header],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
-export class App {}
+export class App {
+  currentLang = 'en';
+
+  constructor(private langService: LanguageService,public services: CommonServices) {
+    this.langService.lang$.subscribe((lang) => (this.currentLang = lang));
+  }
+
+ 
+
+
+
+ 
+}
