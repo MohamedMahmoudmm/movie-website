@@ -6,6 +6,7 @@ import { MovieModel } from '../../models/movie-model';
 import { HttpService } from '../../services/http-service';
 import { Footer } from '../footer/footer';
 import { Router } from '@angular/router';
+import { AccountService } from '../../services/account-service';
 
 @Component({
   selector: 'app-mainpage',
@@ -26,9 +27,10 @@ export class Mainpage {
   sessionId : string ='';
   constructor(private http : HttpService,private router:Router){
   }
-
+  readonly AccountService = inject(AccountService);
+  AccountId = this.AccountService.getAccountDetails().subscribe((user) => user.id);
    ngOnInit() {
-    this.sessionId =localStorage.getItem('session_id')??''; 
+    this.sessionId =localStorage.getItem('session_id')??'';
     if(!this.sessionId)this.router.navigate(['/login']);
 
     this.getAllMovie();
@@ -36,26 +38,30 @@ export class Mainpage {
     this.getWatchList();
   }
   getFav() {
-    this.http.get(`account/21908959/favorite/movies?session_id=${this.sessionId}`).subscribe({
-      next: (movies) => {
-        console.log('favList', movies.results);
-        this.favList = movies.results;
-        this.updateFavOnMainPage();
-      },
-    });
+    this.http
+      .get(`account/${this.AccountId}/favorite/movies`, { session_id: this.sessionId })
+      .subscribe({
+        next: (movies) => {
+          console.log('favList', movies.results);
+          this.favList = movies.results;
+          this.updateFavOnMainPage();
+        },
+      });
   }
   getWatchList() {
-    this.http.get(`account/21908959/watchlist/movies?session_id=${this.sessionId}`).subscribe({
-      next: (movies) => {
-        console.log('watchList', movies.results);
-        this.watchList = movies.results;
-        this.updateWatchOnMainPage();
-      },
-    });
+    this.http
+      .get('account/${AccountId}/watchlist/movies', { session_id: this.sessionId })
+      .subscribe({
+        next: (movies) => {
+          console.log('watchList', movies.results);
+          this.watchList = movies.results;
+          this.updateWatchOnMainPage();
+        },
+      });
   }
 
   getAllMovie(page: number = 1) {
-    this.http.get(`movie/popular?page=${page}`).subscribe({
+    this.http.get('movie/popular', { page: page }).subscribe({
       next: (movies) => {
         console.log('fetched movies', movies.results);
 
@@ -82,7 +88,7 @@ export class Mainpage {
   updateWatchOnMainPage() {
     const favIds = new Set(this.watchList.map((f) => f.id));
     this.movies.forEach((m) => {
-      m.inWatchlist = favIds.has(m.id); // ✅ update the flag
+      m.inWatchlist = favIds.has(m.id); // update the flag
     });
   }
 }

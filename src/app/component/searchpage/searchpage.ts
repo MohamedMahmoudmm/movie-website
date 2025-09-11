@@ -6,12 +6,13 @@ import { CardComponents } from '../card-components/card-components';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { Footer } from '../footer/footer';
 
 @Component({
   selector: 'app-searchpage',
-  imports: [Header, Search, CardComponents, FormsModule, CommonModule],
+  imports: [Header, Search, CardComponents, FormsModule, CommonModule, Footer],
   templateUrl: './searchpage.html',
-  styleUrl: './searchpage.css'
+  styleUrl: './searchpage.css',
 })
 export class Searchpage implements OnInit {
   query: string = '';
@@ -22,6 +23,10 @@ export class Searchpage implements OnInit {
 
   private apiKey = 'a6493890665a35d49413ed72aa7c489c';
 
+  // Pagination state
+  totalPages: number = 1;
+  currentPage: number = 1;
+  
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
@@ -30,10 +35,13 @@ export class Searchpage implements OnInit {
   }
 
   getGenres() {
-    this.http.get<any>(`https://api.themoviedb.org/3/genre/movie/list?api_key=${this.apiKey}`)
+    this.http
+      .get<any>(
+        `https://api.themoviedb.org/3/genre/movie/list?api_key=${this.apiKey}&page=${this.page}`
+      )
       .subscribe({
-        next: (res) => this.genres = res.genres,
-        error: (err) => console.error('Error fetching genres:', err)
+        next: (res) => (this.genres = res.genres),
+        error: (err) => console.error('Error fetching genres:', err),
       });
   }
 
@@ -44,8 +52,8 @@ export class Searchpage implements OnInit {
     }
 
     this.http.get<any>(url).subscribe({
-      next: (res) => this.results = res.results,
-      error: (err) => console.error('Error loading movies:', err)
+      next: (res) => (this.results = res.results),
+      error: (err) => console.error('Error loading movies:', err),
     });
   }
 
@@ -55,12 +63,14 @@ export class Searchpage implements OnInit {
       return;
     }
 
-    this.http.get<any>(
-      `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${this.query}`
-    ).subscribe({
-      next: (res) => this.results = res.results,
-      error: (err) => console.error('Search error:', err)
-    });
+    this.http
+      .get<any>(
+        `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${this.query}`
+      )
+      .subscribe({
+        next: (res) => (this.results = res.results),
+        error: (err) => console.error('Search error:', err),
+      });
   }
 
   onFilterChange() {
