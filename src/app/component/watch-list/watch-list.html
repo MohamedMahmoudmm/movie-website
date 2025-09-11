@@ -6,7 +6,7 @@
     <div class="row g-4">
       
       <!-- Duplicate more cards -->
-       @if (favList.length == 0) {
+       @if (watchList.length == 0) {
   
 <div class="d-flex justify-content-center">
   <div class="spinner-border" role="status">
@@ -14,7 +14,7 @@
   </div>
 </div>
        }
-       @for (movie of favList; track $index) {
+       @for (movie of watchList; track $index) {
         <div class="col-md-6">
         <div class="d-flex bg-white rounded-4 shadow-sm p-3">
           <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" 
@@ -25,8 +25,11 @@
           <div class="d-flex flex-column flex-grow-1">
             <div class="d-flex justify-content-between">
               <h5 class="fw-bold mb-1">{{movie.title}}</h5>
-              <i [class]=" movie.inFav ? 'bi bi-heart-fill text-warning fs-4' : 'bi bi-heart text-warning fs-4'" (click)="toggleFavorite(movie, $event)"></i>
-            </div>
+<i 
+              class="bi"
+              [ngClass]="movie.inWatchlist ? 'bi-bookmark-fill text-warning fs-6' : 'bi-bookmark text-dark fs-6'"
+              (click)="toggleWatchlist(movie, $event)">
+            </i>            </div>
             
             <small class="text-muted mb-1">
               <a href="#" class="text-decoration-none text-muted">{{movie.release_date}}</a>
@@ -52,4 +55,3 @@
 
     </div>
   </div>
-
