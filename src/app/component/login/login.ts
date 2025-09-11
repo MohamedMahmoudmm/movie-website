@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { HttpService } from '../../services/http-service';
 
 @Component({
@@ -11,22 +11,21 @@ import { HttpService } from '../../services/http-service';
 export class Login {
   Msg: string = ''
 
-  constructor(private http: HttpService) {
-    http.login('Mohamed_2001', 'Mohamed_2001').subscribe({
+  constructor(private http: HttpService,private router:Router) {
+
+  }
+
+  login(username: string, password: string) {
+    this.http.login(username, password).subscribe({
       next: (session) => {
         localStorage.setItem('session_id', session.session_id);
         this.Msg = 'Login Success'
+        this.router.navigate(['/home'])
       },
       error: (err) => {
         this.Msg = err.message
       }
     })
-
-    // http.get('movie/now_playing').subscribe({
-      
-    //     console.log(movies)
-      
-    // })
   }
 
 }

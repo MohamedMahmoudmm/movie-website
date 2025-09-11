@@ -55,6 +55,12 @@ get(endpoint: string, params?: Record<string, any>): Observable<any> {
     const query = new URLSearchParams(params).toString();
     url += `&${query}`;
   }
+  else{
+    const separator = endpoint.includes('?') ? '&' : '?';
+
+  return this.http.get(
+    `https://api.themoviedb.org/3/${endpoint}${separator}api_key=${this.apiKey}`)
+  }
 
   return this.http.get(url);
  }

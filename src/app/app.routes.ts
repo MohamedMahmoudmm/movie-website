@@ -10,6 +10,7 @@ import { Wishlist } from './component/wishlist/wishlist';
 
 export const routes: Routes = [
   { path: '', component: Mainpage, title: 'Movie App' },
+  { path: 'home', component: Mainpage, title: 'Movie App' },
   { path: 'search', component: Searchpage, title: 'Search' },
   { path: 'login', component: Login, title: 'login' },
   { path: 'register', component: Register, title: 'register' },
