@@ -5,6 +5,7 @@ import { CardComponents } from '../card-components/card-components';
 import { MovieModel } from '../../models/movie-model';
 import { HttpService } from '../../services/http-service';
 import { Footer } from '../footer/footer';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mainpage',
@@ -21,12 +22,14 @@ export class Mainpage {
   totalPages: number = 1;
   currentPage: number = 1;
 
-  sessionId: string = '';
-  constructor(private http: HttpService) {}
 
-  ngOnInit() {
-    this.sessionId =
-      localStorage.getItem('session_id') ?? '257779405c116d07a85e34239541134469da2573';
+  sessionId : string ='';
+  constructor(private http : HttpService,private router:Router){
+  }
+
+   ngOnInit() {
+    this.sessionId =localStorage.getItem('session_id')??''; 
+    if(!this.sessionId)this.router.navigate(['/login']);
 
     this.getAllMovie();
     this.getFav();
