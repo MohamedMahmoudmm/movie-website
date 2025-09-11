@@ -32,6 +32,7 @@ export class Details {
         .get(`movie/${this.movieId}?api_key=${this.apiKey}&language=${this.LanguageService.lang$}`)
         .subscribe((data) => {
           this.movie = data;
+          console.log(this.movie);
         });
     });
     this.getRecommendtions();
