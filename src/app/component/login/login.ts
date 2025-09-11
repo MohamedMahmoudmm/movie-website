@@ -13,6 +13,9 @@ export class Login {
 
   constructor(private http: HttpService,private router:Router) {
 
+    if(localStorage.getItem('session_id')){
+      this.router.navigate(['/home'])
+    }
   }
 
   login(username: string, password: string) {
