@@ -5,36 +5,39 @@ import { MovieDetailsComponent } from '../movie-details-component/movie-details-
 import { HttpService } from '../../services/http-service';
 import { MovieModel } from '../../models/movie-model';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-
+import { LanguageService } from '../../services/language-service';
 
 @Component({
   selector: 'app-details',
-  imports: [Header,CardComponents,MovieDetailsComponent,RouterLink],
+  imports: [Header, CardComponents, MovieDetailsComponent, RouterLink],
   templateUrl: './details.html',
-  styleUrl: './details.css'
+  styleUrl: './details.css',
 })
-
 export class Details {
-  movies : MovieModel[] = []
-  movie : any
-  apiKey = 'a6493890665a35d49413ed72aa7c489c'
-  genres : any[] = []
-  movieId : any
-  constructor(private http: HttpService, private route: ActivatedRoute) {
+  movies: MovieModel[] = [];
+  movie: any;
+  apiKey = 'a6493890665a35d49413ed72aa7c489c';
+  genres: any[] = [];
+  movieId: any;
+  constructor(
+    private http: HttpService,
+    private route: ActivatedRoute,
+    private LanguageService: LanguageService
+  ) {}
 
-  }
-
-    ngOnInit() {
-      this.route.params.subscribe(params => {
-       this.movieId = params['id'];
-      this.http.get(`movie/${this.movieId}?api_key=${this.apiKey}`).subscribe(data => {
-        this.movie = data;
-      });
+  ngOnInit() {
+    this.route.params.subscribe((params) => {
+      this.movieId = params['id'];
+      this.http
+        .get(`movie/${this.movieId}?api_key=${this.apiKey}&language=${this.LanguageService.lang$}`)
+        .subscribe((data) => {
+          this.movie = data;
+        });
     });
-    this.getRecommendtions()
+    this.getRecommendtions();
   }
 
-/* getAllGenre()
+  /* getAllGenre()
   {
     this.http.get('genre/movie/list?api_key=a6493890665a35d49413ed72aa7c489c').subscribe({
       next: (genres) => {
@@ -45,14 +48,12 @@ export class Details {
   }
     */
 
-  getRecommendtions()
-  {
+  getRecommendtions() {
     this.http.get(`movie/${this.movieId}/recommendations?api_key=${this.apiKey}`).subscribe({
       next: (movies) => {
         console.log(movies.results);
-        this.movies = movies.results
-      }
-    })
-    
+        this.movies = movies.results;
+      },
+    });
   }
 }
