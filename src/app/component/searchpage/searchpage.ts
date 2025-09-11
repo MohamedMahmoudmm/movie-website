@@ -26,7 +26,7 @@ export class Searchpage implements OnInit {
   // Pagination state
   totalPages: number = 1;
   currentPage: number = 1;
-  
+
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
@@ -37,7 +37,7 @@ export class Searchpage implements OnInit {
   getGenres() {
     this.http
       .get<any>(
-        `https://api.themoviedb.org/3/genre/movie/list?api_key=${this.apiKey}&page=${this.page}`
+        `https://api.themoviedb.org/3/genre/movie/list?api_key=${this.apiKey}`
       )
       .subscribe({
         next: (res) => (this.genres = res.genres),
