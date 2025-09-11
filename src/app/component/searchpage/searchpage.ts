@@ -26,7 +26,7 @@ export class Searchpage implements OnInit {
   // Pagination state
   totalPages: number = 1;
   currentPage: number = 1;
-  
+
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
