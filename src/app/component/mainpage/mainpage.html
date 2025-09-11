@@ -1,9 +1,8 @@
 
-<app-header [favCount]="favList.length"></app-header>
 <app-search></app-search>
 <h2 class="fw-bold m-4">Now Playing</h2>
 
-@if (movies.length==0) {
+@if (services.movies.length == 0) {
 
 <div class="d-flex justify-content-center">
   <div class="spinner-border" role="status">
@@ -12,7 +11,7 @@
 </div>}
 <app-card-components 
 
-[movies]="movies"
+[movies]="this.services.movies"
 
 
 >

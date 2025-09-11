@@ -1,12 +1,10 @@
-<app-header></app-header>
-
 
   <div class="container py-4">
-    <h3 class="mb-4 fw-bold">Favorite list</h3>
+    <h3 class="mb-4 fw-bold">watchList</h3>
     <div class="row g-4">
       
       <!-- Duplicate more cards -->
-       @if (watchList.length == 0) {
+       @if (this.services.watchList.length == 0) {
   
 <div class="d-flex justify-content-center">
   <div class="spinner-border" role="status">
@@ -14,23 +12,20 @@
   </div>
 </div>
        }
-       @for (movie of watchList; track $index) {
+       @for (movie of this.services.watchList; track $index) {
         <div class="col-md-6">
         <div class="d-flex bg-white rounded-4 shadow-sm p-3">
           <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" 
 
                alt="movie poster" 
-               class="img-fluid rounded me-3" style="width:100px;">
+               class="img-fluid rounded me-3" style="width:30%;">
           
           <div class="d-flex flex-column flex-grow-1">
             <div class="d-flex justify-content-between">
-              <h5 class="fw-bold mb-1">{{movie.title}}</h5>
-<i 
-              class="bi"
-              [ngClass]="movie.inWatchlist ? 'bi-bookmark-fill text-warning fs-6' : 'bi-bookmark text-dark fs-6'"
-              (click)="toggleWatchlist(movie, $event)">
-            </i>            </div>
-            
+            <h5 class="fw-bold mb-1">{{movie.title}}</h5>
+            <i class="bi" [ngClass]="!movie.inWatchlist ? 'bi-bookmark-fill text-warning fs-6' : 'bi-bookmark text-dark fs-6'"
+                (click)="this.services.toggleWatchlist(movie, $event)">
+            </i> </div>
             <small class="text-muted mb-1">
               <a href="#" class="text-decoration-none text-muted">{{movie.release_date}}</a>
             </small>

@@ -3,30 +3,34 @@ import { Component, DOCUMENT, HostListener, Inject, OnInit } from '@angular/core
 
 @Component({
   selector: 'app-scroll-to-top',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './scroll-to-top.html',
-  styleUrl: './scroll-to-top.css'
+  styleUrls: ['./scroll-to-top.css']
 })
 export class ScrollToTop implements OnInit {
-  windowScrolled: boolean=false;
+  windowScrolled = false;
+
   constructor(@Inject(DOCUMENT) private document: Document) {}
-  @HostListener("window:scroll", [])
+
+  @HostListener('window:scroll', [])
   onWindowScroll() {
-      if (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) {
-          this.windowScrolled = true;
-      } 
-     else if (this.windowScrolled && window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop < 10) {
-          this.windowScrolled = false;
-      }
+    const yOffset =
+      window.pageYOffset ||
+      this.document.documentElement.scrollTop ||
+      this.document.body.scrollTop ||
+      0;
+
+    if (yOffset > 100) {
+      this.windowScrolled = true;
+    } else if (this.windowScrolled && yOffset < 10) {
+      this.windowScrolled = false;
+    }
   }
+
   scrollToTop() {
-      (function smoothscroll() {
-          var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
-          if (currentScroll > 0) {
-              window.requestAnimationFrame(smoothscroll);
-              window.scrollTo(0, currentScroll - (currentScroll / 8));
-          }
-      })();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
   ngOnInit() {}
 }

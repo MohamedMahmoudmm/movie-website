@@ -31,13 +31,13 @@
             <i 
               class="bi"
               [ngClass]="movie.inWatchlist ? 'bi-bookmark-fill text-warning fs-6' : 'bi-bookmark text-dark fs-6'"
-              (click)="toggleWatchlist(movie, $event)">
+              (click)="this.services.toggleWatchlist(movie, $event)">
             </i>
 
             <i 
               class="bi"
               [ngClass]="movie.inFav ? 'bi-heart-fill text-danger fs-6' : 'bi-heart text-dark fs-6'"
-              (click)="toggleFavorite(movie, $event)">
+              (click)="this.services.toggleFavorite(movie, $event)">
             </i>
           </div>
         </div>
