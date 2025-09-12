@@ -1,9 +1,7 @@
 <div class="row" *ngIf="movie">
   <!-- Poster -->
   <div class="col-md-4">
-    <img 
-      [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
-      [alt]="movie.title"
+    <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" [alt]="movie.title"
       class="movie-poster img-fluid rounded shadow" />
   </div>
 
@@ -16,6 +14,7 @@
     <div class="d-flex align-items-center mb-2">
       <i *ngFor="let star of getStars(movie.vote_average)" class="bi" [ngClass]="star"></i>
       <span class="ms-2">{{ movie.vote_count }}</span>
+      <i class="bi bi-heart ms-auto fs-4 text-warning"></i>
     </div>
 
     <!-- Overview -->
@@ -23,9 +22,7 @@
 
     <!-- Genres -->
     <div class="mb-3">
-      <button 
-        *ngFor="let genre of movie.genres" 
-        class="btn btn-warning btn-sm genre-btn me-2">
+      <button *ngFor="let genre of movie.genres" class="btn btn-warning btn-sm genre-btn me-2">
         {{ genre.name }}
       </button>
     </div>
@@ -36,17 +33,27 @@
 
     <!-- Company Logo -->
     <p *ngIf="movie.production_companies?.length">
-      <img 
-        *ngIf="movie.production_companies[0].logo_path" 
-        [src]="'https://image.tmdb.org/t/p/w200' + movie.production_companies[0].logo_path" 
-        [alt]="movie.production_companies[0].name" 
-        width="120"
-      />
+      <img *ngIf="movie.production_companies[0].logo_path"
+        [src]="'https://image.tmdb.org/t/p/w200' + movie.production_companies[0].logo_path"
+        [alt]="movie.production_companies[0].name" width="120" />
     </p>
 
-    <!-- Homepage -->
-    <a *ngIf="movie.homepage" [href]="movie.homepage" target="_blank" class="btn btn-outline-dark">
+    <a *ngIf="movie.homepage" [href]="movie.homepage" target="_blank" class="btn btn-outline-dark me-2">
       Website <i class="bi bi-box-arrow-up-right"></i>
     </a>
+
+    <button class="btn btn-danger" (click)="loadTrailer(movie.id)">
+      ▶ Watch Trailer
+    </button>
   </div>
+
+  <!-- Trailer iframe -->
+  <div class="row mt-4" *ngIf="trailerUrl">
+    <div class="col-12">
+      <div class="ratio ratio-16x9">
+        <iframe [src]="trailerUrl | safeUrl" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
 </div>
