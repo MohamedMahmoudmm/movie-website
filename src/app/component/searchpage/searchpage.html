@@ -23,7 +23,7 @@
     </select>
   </div>
 
-  <div class="row mt-4" *ngIf="results.length > 0">
+  <div class="row mt-4" *ngIf="this.services.movies.length == 0">
     <div class="col-md-8">
       <h6 class="fw-bold">
         Search Results
@@ -32,7 +32,7 @@
     </div>
   </div>
 
-  @if(results.length==0) {
+  @if(this.services.movies.length == 0) {
 
 <div class="d-flex justify-content-center">
   <div class="spinner-border" role="status">
@@ -40,7 +40,7 @@
   </div>
 </div>
   }
-  <app-card-components [movies]="results"></app-card-components>
+  <app-card-components [movies]="this.services.movies"></app-card-components>
 </section>
 <app-footer
   [totalPages]="totalPages"

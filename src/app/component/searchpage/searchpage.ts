@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Footer } from '../footer/footer';
 import { HttpService } from '../../services/http-service';
+import { CommonServices } from '../../services/common-services';
 
 @Component({
   selector: 'app-searchpage',
@@ -15,9 +16,8 @@ import { HttpService } from '../../services/http-service';
 })
 export class Searchpage implements OnInit {
   private httpService = inject(HttpService);
-
+public services = inject(CommonServices);
   query: string = '';
-  results: any[] = [];
   genres: any[] = [];
   selectedGenre: number | null = null;
   sortBy: string = 'popularity.desc';
@@ -50,9 +50,11 @@ export class Searchpage implements OnInit {
 
     this.httpService.get(endpoint, params).subscribe({
       next: (res) => {
-        this.results = res.results;
+        this.services.movies = res.results;
         this.totalPages = res.total_pages
         this.currentPage = res.page;
+        this.services.updateFavOnMainPage();
+        this.services.updateWatchOnMainPage();
       },
       error: (err) => console.error('Error loading movies:', err),
     });
@@ -66,9 +68,11 @@ export class Searchpage implements OnInit {
 
     this.httpService.get('search/movie', { query: this.query }).subscribe({
       next: (res) => {
-        this.results = res.results;
+        this.services.movies = res.results;
         this.totalPages = Math.min(res.total_pages,500)
         this.currentPage = res.page;
+        this.services.updateFavOnMainPage();
+        this.services.updateWatchOnMainPage();
       },
       error: (err) => console.error('Search error:', err),
     });
