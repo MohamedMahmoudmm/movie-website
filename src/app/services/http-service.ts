@@ -7,7 +7,7 @@ import { catchError,  throwError } from 'rxjs';
 })
 export class HttpService {
   constructor(private http:HttpClient) { }
-apiKey = 'a6493890665a35d49413ed72aa7c489c';
+apiKey = 'b11725f9e5398c8211838ec6320bf330';
 request_token:string=''
 
 
@@ -54,12 +54,6 @@ get(endpoint: string, params?: Record<string, any>): Observable<any> {
   if (params) {
     const query = new URLSearchParams(params).toString();
     url += `&${query}`;
-  }
-  else{
-    const separator = endpoint.includes('?') ? '&' : '?';
-
-  return this.http.get(
-    `https://api.themoviedb.org/3/${endpoint}${separator}api_key=${this.apiKey}`)
   }
 
   return this.http.get(url);
