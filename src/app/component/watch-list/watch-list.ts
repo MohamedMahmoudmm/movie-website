@@ -1,45 +1,15 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { MovieModel } from '../../models/movie-model';
-import { WatchlistService } from '../../services/watchlist';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { AsyncPipe } from '@angular/common';
-import { NgClass } from '@angular/common';
-
+import { CommonModule } from '@angular/common';
+import { CommonServices } from '../../services/common-services';
 
 @Component({
-  selector: 'app-watchlist',
-  standalone: true,
-  imports: [AsyncPipe , NgClass,],
+  selector: 'app-watch-list',
+  imports: [CommonModule],
   templateUrl: './watch-list.html',
-  styleUrls: ['./watch-list.css']
+  styleUrl: './watch-list.css',
 })
-export class WatchlistComponent {
-  watchlist$: Observable<MovieModel[]>;
-  favCount$: Observable<number>;
+export class WatchList {
+  constructor(public services: CommonServices) {}
 
-  constructor(
-    public watchlistService: WatchlistService,
-    private snackBar: MatSnackBar
-  ) {
-    this.watchlist$ = this.watchlistService.watchlist$;
-    this.favCount$ = this.watchlistService.count$;
-  }
 
-  trackById(index: number, movie: MovieModel): number {
-    return movie.id;
-  }
-
-  toggleWatchlist(movie: MovieModel): void {
-    const added = this.watchlistService.toggle(movie);
-    this.snackBar.open(
-      added ? 'Added to Watchlist' : 'Removed from Watchlist',
-      'Close',
-      { duration: 2000 }
-    );
-  }
-
-  isInWatchlist(movieId: number): boolean {
-    return this.watchlistService.isInWatchlist(movieId);
-  }
 }
