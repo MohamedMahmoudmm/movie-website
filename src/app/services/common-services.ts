@@ -14,26 +14,25 @@ export class CommonServices {
   sessionId: string = '';
   AccountId: number = 0;
   constructor(private http: HttpService,private accountService: AccountService) {
-    this.sessionId = localStorage.getItem('session_id') ?? ''; 
-      this.accountService.getAccountDetails().subscribe((user) => this.AccountId = user.id);  
-      this.getFav();    
+    this.sessionId = localStorage.getItem('session_id') ?? '';
+    this.accountService.getAccountDetails().subscribe((user) => {
+      this.AccountId = user.id;
+      this.getFav();
       this.getWatchList();
-
+    });
   }
 
   getFav() {
-    this.http.get(`account/${this.AccountId}/favorite/movies?session_id=${this.sessionId}`).subscribe({
+    this.http.get(`account/${this.AccountId}/favorite/movies`,{session_id:this.sessionId}).subscribe({
       next: (movies) => {
-        console.log('favFromService',movies.results);
         this.favList = movies.results;
-        this.updateFavOnMainPage();    
+        this.updateFavOnMainPage();
 
       },
     });
   }
    toggleFavorite(movie: MovieModel, event: Event) {
-    console.log(movie.inFav);
-    
+
     event.stopPropagation();
     const body = {
       media_type: 'movie',
@@ -47,12 +46,10 @@ export class CommonServices {
       },
       error: (err) => console.error('Error adding to favorite:', err),
     });
-    console.log(movie.inFav);
   }
   getWatchList() {
-    this.http.get(`account/${this.AccountId}/watchlist/movies?session_id=${this.sessionId}`).subscribe({
+    this.http.get(`account/${this.AccountId}/watchlist/movies`,{session_id:this.sessionId}).subscribe({
       next: (movies) => {
-        console.log('watchFromService',movies.results);
         this.watchList = movies.results;
         this.updateWatchOnMainPage();
       },
@@ -73,7 +70,6 @@ toggleWatchlist(movie: MovieModel, event: Event){
       },
       error: (err) => console.error('Error adding to favorite:', err),
     });
-    console.log(movie.inWatchlist);
   }
   updateFavOnMainPage() {
     const favIds = new Set(this.favList.map((f) => f.id));
