@@ -25,35 +25,30 @@ export class Details {
   ) {}
 
   ngOnInit() {
-    this.route.params.subscribe((params) => {
-      this.movieId = params['id'];
-      this.http
-        .get(`movie/${this.movieId}?api_key=${this.apiKey}&language=${this.LanguageService.lang$}`)
-        .subscribe((data) => {
-          this.movie = data;
-          console.log(this.movie);
-        });
-    });
-    this.getRecommendtions();
-  }
+  this.route.params.subscribe((params) => {
+    this.movieId = params['id'];
 
-  /* getAllGenre()
-  {
-    this.http.get('genre/movie/list?api_key=a6493890665a35d49413ed72aa7c489c').subscribe({
-      next: (genres) => {
-        console.log(genres.genres);
-        this.genres = genres.genres
-      }
-    })
-  }
-    */
+    this.http
+      .get(`movie/${this.movieId}?api_key=${this.apiKey}&language=${this.LanguageService.lang$}`)
+      .subscribe((data) => {
+        this.movie = data;
+        console.log(this.movie);
+      });
+    this.getRecommendtions();
+  });
+}
+
+
+ 
 
   getRecommendtions() {
-    this.http.get(`movie/${this.movieId}/recommendations?api_key=${this.apiKey}`).subscribe({
-      next: (movies) => {
+  this.http
+    .get(`movie/${this.movieId}/recommendations?api_key=${this.apiKey}&language=${this.LanguageService.lang$}`)
+    .subscribe({
+      next: (movies: any) => {
         console.log(movies.results);
         this.movies = movies.results;
       },
     });
-  }
+}
 }
