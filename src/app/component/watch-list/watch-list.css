@@ -1,8 +1,24 @@
+.container {
+  padding: 20px;
+}
 
+.movie-card {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.movie-card img {
+  width: 80px;
+  height: auto;
+  margin-right: 15px;
+}
 
 .line-clamp-5 {
   display: -webkit-box;
-  -webkit-line-clamp: 4;  /* limit to 5 lines */
+  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

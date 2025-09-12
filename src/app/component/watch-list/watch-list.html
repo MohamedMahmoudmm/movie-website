@@ -1,33 +1,32 @@
+<div class="container py-4">
+  <h3 class="mb-4 fw-bold">Watchlist</h3>
+  <div class="row g-4">
 
-  <div class="container py-4">
-    <h3 class="mb-4 fw-bold">watchList</h3>
-    <div class="row g-4">
+    <ng-container *ngIf="watchlist$ | async as watchlist">
       
-      <!-- Duplicate more cards -->
-       @if (this.services.watchList.length == 0) {
-  
-<div class="d-flex justify-content-center">
-  <div class="spinner-border" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-</div>
-       }
-       @for (movie of this.services.watchList; track $index) {
-        <div class="col-md-6">
-        <div class="d-flex bg-white rounded-4 shadow-sm p-3">
-          <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" 
+      <div *ngIf="watchlist.length === 0" class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
 
-               alt="movie poster" 
+      <div *ngFor="let movie of watchlist; trackBy: trackById" class="col-md-6">
+        <div class="d-flex bg-white rounded-4 shadow-sm p-3">
+          <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+               alt="movie poster"
                class="img-fluid rounded me-3" style="width:30%;">
-          
+
           <div class="d-flex flex-column flex-grow-1">
             <div class="d-flex justify-content-between">
-            <h5 class="fw-bold mb-1">{{movie.title}}</h5>
-            <i class="bi" [ngClass]="!movie.inWatchlist ? 'bi-bookmark-fill text-warning fs-6' : 'bi-bookmark text-dark fs-6'"
-                (click)="this.services.toggleWatchlist(movie, $event)">
-            </i> </div>
+              <h5 class="fw-bold mb-1">{{ movie.title }}</h5>
+              <i class="bi"
+                 [ngClass]="isInWatchlist(movie.id) ? 'bi-bookmark-fill text-warning fs-6' : 'bi-bookmark text-dark fs-6'"
+                 (click)="toggleWatchlist(movie)">
+              </i>
+            </div>
+
             <small class="text-muted mb-1">
-              <a href="#" class="text-decoration-none text-muted">{{movie.release_date}}</a>
+              <a href="#" class="text-decoration-none text-muted">{{ movie.release_date }}</a>
             </small>
 
             <div class="mb-2">
@@ -36,17 +35,17 @@
               <i class="bi bi-star-fill text-warning"></i>
               <i class="bi bi-star-fill text-warning"></i>
               <i class="bi bi-star text-warning"></i>
-              <span class="ms-2">{{movie.vote_count}}</span>
+              <span class="ms-2">{{ movie.vote_count }}</span>
             </div>
 
             <p class="mb-0 text-muted line-clamp-5">
-{{movie.overview}}          
-  </p>
+              {{ movie.overview }}
+            </p>
           </div>
         </div>
       </div>
-       }
-      
 
-    </div>
+    </ng-container>
+
   </div>
+</div>

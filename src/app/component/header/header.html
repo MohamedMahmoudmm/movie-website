@@ -24,6 +24,10 @@
     <a routerLink="/favorites" class="text-dark fw-semibold text-decoration-none">
       <i class="bi bi-heart-fill me-1"> {{ favCount }}</i>
     </a>
+
+    <!-- <a class="nav-link" routerLink="/watchlist">
+  Watchlist <span class="badge bg-danger ms-1">{{ (watchlistService.count$ | async) }}</span>
+</a> -->
     <a routerLink="/watchList" class="text-dark fw-semibold text-decoration-none">
        Watchlist
     </a>
@@ -33,3 +37,6 @@
     </a>
   </div>
 </nav>
+
+
+
