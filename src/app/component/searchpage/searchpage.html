@@ -1,8 +1,8 @@
 
 <section class="py-5 m-4" style="background-color: #f8f9fa;">
   <div class="d-flex gap-2 mb-3">
-    <input 
-      type="text" 
+    <input
+      type="text"
       class="form-control w-80" 
       placeholder="Search for a movie, tv show..."
       [(ngModel)]="query"
@@ -26,7 +26,7 @@
   <div class="row mt-4" *ngIf="results.length > 0">
     <div class="col-md-8">
       <h6 class="fw-bold">
-        Search Results 
+        Search Results
         <span *ngIf="query">for "{{ query }}"</span>
       </h6>
     </div>
@@ -42,3 +42,8 @@
   }
   <app-card-components [movies]="results"></app-card-components>
 </section>
+<app-footer
+  [totalPages]="totalPages"
+  [currentPage]="currentPage"
+  (pageChange)="onPageChange($event)">
+</app-footer>

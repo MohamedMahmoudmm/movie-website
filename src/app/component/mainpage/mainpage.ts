@@ -1,5 +1,4 @@
 import { Component, inject, Input, signal } from '@angular/core';
-import { Header } from '../header/header';
 import { Search } from '../search/search';
 import { CardComponents } from '../card-components/card-components';
 import { MovieModel } from '../../models/movie-model';
@@ -11,7 +10,7 @@ import { CommonServices } from '../../services/common-services';
 
 @Component({
   selector: 'app-mainpage',
-  imports: [Header, Search, CardComponents, Footer],
+  imports: [ Search, CardComponents, Footer],
   templateUrl: './mainpage.html',
   styleUrl: './mainpage.css',
 })
@@ -26,10 +25,10 @@ export class Mainpage {
    ngOnInit() {
     this.sessionId =localStorage.getItem('session_id')??'';
     if(!this.sessionId)this.router.navigate(['/login']);
-    
+
     this.getAllMovie();
   }
- 
+
   getAllMovie(page: number = 1) {
     this.http.get('movie/popular', { page: page }).subscribe({
       next: (movies) => {

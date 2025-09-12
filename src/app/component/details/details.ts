@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Header } from '../header/header';
 import { CardComponents } from '../card-components/card-components';
 import { MovieDetailsComponent } from '../movie-details-component/movie-details-component';
 import { HttpService } from '../../services/http-service';
@@ -9,14 +8,14 @@ import { LanguageService } from '../../services/language-service';
 
 @Component({
   selector: 'app-details',
-  imports: [Header, CardComponents, MovieDetailsComponent, RouterLink],
+  imports: [CardComponents, MovieDetailsComponent],
   templateUrl: './details.html',
   styleUrl: './details.css',
 })
 export class Details {
   movies: MovieModel[] = [];
   movie: any;
-  apiKey = 'a6493890665a35d49413ed72aa7c489c';
+  apiKey = 'b11725f9e5398c8211838ec6320bf330';
   genres: any[] = [];
   movieId: any;
   constructor(
