@@ -7,16 +7,18 @@ import { CommonModule } from '@angular/common';
 import { Footer } from '../footer/footer';
 import { HttpService } from '../../services/http-service';
 import { CommonServices } from '../../services/common-services';
+import { LanguageService } from '../../services/language-service';
 
 @Component({
   selector: 'app-searchpage',
-  imports: [Search, CardComponents, FormsModule, CommonModule, Footer],
+  imports: [CardComponents, FormsModule, CommonModule, Footer],
   templateUrl: './searchpage.html',
   styleUrl: './searchpage.css',
 })
 export class Searchpage implements OnInit {
   private httpService = inject(HttpService);
-public services = inject(CommonServices);
+  public services = inject(CommonServices);
+  private langService = inject(LanguageService);
   query: string = '';
   genres: any[] = [];
   selectedGenre: number | null = null;
@@ -31,6 +33,9 @@ public services = inject(CommonServices);
     this.loadMovies();
   }
 
+  t(key: string): string {
+    return this.langService.translate(key);
+  }
   getGenres() {
     this.httpService.get('genre/movie/list').subscribe({
       next: (res) => (this.genres = res.genres),
@@ -51,7 +56,7 @@ public services = inject(CommonServices);
     this.httpService.get(endpoint, params).subscribe({
       next: (res) => {
         this.services.movies = res.results;
-        this.totalPages = res.total_pages
+        this.totalPages = res.total_pages;
         this.currentPage = res.page;
         this.services.updateFavOnMainPage();
         this.services.updateWatchOnMainPage();
@@ -69,7 +74,7 @@ public services = inject(CommonServices);
     this.httpService.get('search/movie', { query: this.query }).subscribe({
       next: (res) => {
         this.services.movies = res.results;
-        this.totalPages = Math.min(res.total_pages,500)
+        this.totalPages = Math.min(res.total_pages, 500);
         this.currentPage = res.page;
         this.services.updateFavOnMainPage();
         this.services.updateWatchOnMainPage();

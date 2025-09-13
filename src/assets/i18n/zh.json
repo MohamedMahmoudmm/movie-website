@@ -1,0 +1,15 @@
+{
+  "appName": "电影应用",
+  "favorites": "收藏",
+  "watchlist": "观看列表",
+  "welcomeTitle": "欢迎使用我们的电影应用",
+  "welcomeSubtitle": "数百万部电影、电视剧和人物等待发现。立即探索。",
+  "searchPlaceholder": "搜索电影或电视剧...",
+  "searchButton": "搜索",
+  "allGenres": "所有类型",
+  "sortPopularity": "人气",
+  "sortReleaseDate": "上映日期",
+  "sortTopRated": "最高评分",
+  "searchResults": "搜索结果",
+  "loading": "加载中..."
+}

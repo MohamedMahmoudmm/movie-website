@@ -11,13 +11,15 @@ import { LanguageService } from '../../services/language-service';
 export class Header {
   @Input() favCount: number = 0;
   languages: string[] = ['en', 'ar', 'fr', 'zh'];
-  currentLang: string = localStorage.getItem('lang') ?? 'en';
+  private langService = inject(LanguageService);
 
-  private langService = inject(LanguageService)
-
+  currentLang: string = this.langService.currentLang;
   changeLanguage(lang: string) {
     this.currentLang = lang;
     this.langService.setLanguage(lang);
   }
 
+  t(key: string) {
+    return this.langService.translate(key);
+  }
 }

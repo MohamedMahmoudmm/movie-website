@@ -1,0 +1,15 @@
+{
+  "appName": "Application de films",
+  "favorites": "Favoris",
+  "watchlist": "Liste de visionnage",
+  "welcomeTitle": "Bienvenue dans notre application de films",
+  "welcomeSubtitle": "Des millions de films, séries et personnes à découvrir. Explorez maintenant.",
+  "searchPlaceholder": "Rechercher un film, une série...",
+  "searchButton": "Rechercher",
+  "allGenres": "Tous les genres",
+  "sortPopularity": "Popularité",
+  "sortReleaseDate": "Date de sortie",
+  "sortTopRated": "Les mieux notés",
+  "searchResults": "Résultats de recherche",
+  "loading": "Chargement..."
+}

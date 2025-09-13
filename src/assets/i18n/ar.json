@@ -1,0 +1,15 @@
+{
+  "appName": "تطبيق الأفلام",
+  "favorites": "المفضلة",
+  "watchlist": "قائمة المشاهدة",
+  "welcomeTitle": "مرحبًا بك في تطبيق الأفلام",
+  "welcomeSubtitle": "ملايين الأفلام والبرامج التلفزيونية والأشخاص لاكتشافهم. استكشف الآن.",
+  "searchPlaceholder": "ابحث عن فيلم أو برنامج تلفزيوني...",
+  "searchButton": "بحث",
+  "allGenres": "جميع الأنواع",
+  "sortPopularity": "الأكثر شيوعًا",
+  "sortReleaseDate": "تاريخ الإصدار",
+  "sortTopRated": "الأعلى تقييمًا",
+  "searchResults": "نتائج البحث",
+  "loading": "جارٍ التحميل..."
+}
