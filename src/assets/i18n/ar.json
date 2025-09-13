@@ -11,5 +11,12 @@
   "sortReleaseDate": "تاريخ الإصدار",
   "sortTopRated": "الأعلى تقييمًا",
   "searchResults": "نتائج البحث",
-  "loading": "جارٍ التحميل..."
+  "loading": "جارٍ التحميل...",
+  "editProfile": "تعديل الملف الشخصي",
+  "joined": "انضم منذ",
+  "watchedRecently": "تمت مشاهدته مؤخرًا",
+  "watchedSinceJoining": "تمت مشاهدته منذ الانضمام",
+  "movies": "أفلام",
+  "shows": "مسلسلات",
+  "episodes": "حلقات"
 }

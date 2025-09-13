@@ -3,7 +3,7 @@ import { Component, inject, OnInit, ElementRef, ViewChild } from '@angular/core'
 import { RouterModule } from '@angular/router';
 import { AccountService } from '../../services/account-service';
 import { UserModel } from '../../models/user-model';
-// import { Router } from '@angular/router';
+import { LanguageService } from '../../services/language-service';
 
 @Component({
   selector: 'app-account-details',
@@ -13,20 +13,23 @@ import { UserModel } from '../../models/user-model';
 })
 export class AccountDetails implements OnInit {
   private accountService = inject(AccountService);
+  private langService = inject(LanguageService);
 
   user: UserModel | null = null;
   profileImage: string | null = null;
   joinedYear = 2025;
   // Example static stats
   stats = [
-    { label: 'Movies', count: 20 },
-    { label: 'Shows', count: 35 },
-    { label: 'Episodes', count: 480 },
-  ];
+  { key: 'movies', count: 20 },
+  { key: 'shows', count: 35 },
+  { key: 'episodes', count: 480 },
+];
   ngOnInit(): void {
     this.loadAccountDetails();
   }
-
+  t(key: string): string {
+    return this.langService.translate(key);
+  }
   private loadAccountDetails() {
     this.accountService.getAccountDetails().subscribe({
       next: (res) => {
@@ -40,9 +43,6 @@ export class AccountDetails implements OnInit {
     });
   }
 
-  // goToEditProfile() {
-  //   this.router.navigate(['/edit-profile']);
-  // }
 
   @ViewChild('scrollContainer', { static: true })
   scrollContainer!: ElementRef<HTMLDivElement>;

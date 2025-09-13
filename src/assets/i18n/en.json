@@ -11,5 +11,12 @@
   "sortReleaseDate": "Release Date",
   "sortTopRated": "Top Rated",
   "searchResults": "Search Results",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "editProfile": "Edit Profile",
+  "joined": "Joined",
+  "watchedRecently": "Watched recently",
+  "watchedSinceJoining": "Watched since joining",
+  "movies": "Movies",
+  "shows": "Shows",
+  "episodes": "Episodes"
 }

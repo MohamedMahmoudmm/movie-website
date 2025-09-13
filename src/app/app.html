@@ -1,5 +1,5 @@
 
-<div [class.rtl]="(lang$ | async) === 'ar'" [class.ltr]="(lang$ | async) !== 'ar'">
+<div [attr.dir]="(lang$ | async) === 'ar' ? 'rtl' : 'ltr'">
 <app-header [favCount]="services.favList.length"></app-header>
 <main class="">
     <router-outlet></router-outlet>

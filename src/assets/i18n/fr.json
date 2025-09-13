@@ -11,5 +11,12 @@
   "sortReleaseDate": "Date de sortie",
   "sortTopRated": "Les mieux notés",
   "searchResults": "Résultats de recherche",
-  "loading": "Chargement..."
+  "loading": "Chargement...",
+  "editProfile": "Modifier le profil",
+  "joined": "Inscrit depuis",
+  "watchedRecently": "Regardé récemment",
+  "watchedSinceJoining": "Regardé depuis l'inscription",
+  "movies": "Films",
+  "shows": "Séries",
+  "episodes": "Épisodes"
 }

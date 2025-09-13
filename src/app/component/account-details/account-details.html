@@ -26,30 +26,30 @@
         <h3 class="mb-1">{{ user?.name }}</h3>
         <p class="text-muted mb-0 small">
           <i class="bi bi-calendar4 me-1 text-white"></i
-          ><span class="text-white">Joined {{ joinedYear }}</span>
+          ><span class="text-white">{{ t('joined') }} {{ joinedYear }}</span>
         </p>
       </div>
 
       <!-- Top Right Edit Button -->
       <div class="position-absolute top-0 end-0 p-3">
-        <button [routerLink]="['/edit-profile']" class="btn btn-link text-white fw-bold p-0 text-decoration-none">Edit Profile</button>
+        <button [routerLink]="['/edit-profile']" class="btn btn-link text-white fw-bold p-0 text-decoration-none">{{ t('editProfile') }}</button>
       </div>
     </section>
 
     <!-- Stats + Watched recently -->
     <section class="stats-card mb-4 p-4 rounded text-center">
       <div class="stats d-flex justify-content-around mb-3">
-        @for (stat of stats; track stat.label) {
+        @for (stat of stats; track stat.key) {
         <div>
           <h4 class="mb-0">{{ stat.count }}</h4>
-          <p class="text-white mb-0 small">{{ stat.label }}</p>
+          <p class="text-white mb-0 small">{{ t(stat.key) }}</p>
         </div>
         }
       </div>
 
       <hr class="border-secondary opacity-25 my-3" />
 
-      <h6 class="text-start mb-3"><i class="bi bi-clock-history me-2"></i> Watched recently</h6>
+      <h6 class="text-start mb-3"><i class="bi bi-clock-history me-2"></i> {{ t('watchedRecently')}}</h6>
 
       <!-- Horizontal scroll container -->
       <div class="watched-container position-relative">
@@ -79,7 +79,7 @@
         </button>
       </div>
 
-      <small class="text-white d-block mt-3">Watched since joining</small>
+      <small class="text-white d-block mt-3">{{ t('watchedSinceJoining') }}</small>
     </section>
   </div>
 </main>
