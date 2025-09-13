@@ -1,0 +1,15 @@
+{
+  "appName": "Movie App",
+  "favorites": "Favorites",
+  "watchlist": "Watchlist",
+  "welcomeTitle": "Welcome to our movie app",
+  "welcomeSubtitle": "Millions of movies, TV shows and people to discover. Explore now.",
+  "searchPlaceholder": "Search for a movie, tv show...",
+  "searchButton": "Search",
+  "allGenres": "All Genres",
+  "sortPopularity": "Popularity",
+  "sortReleaseDate": "Release Date",
+  "sortTopRated": "Top Rated",
+  "searchResults": "Search Results",
+  "loading": "Loading..."
+}

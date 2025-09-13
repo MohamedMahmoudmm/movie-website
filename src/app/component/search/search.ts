@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from "@angular/router";
+import { LanguageService } from '../../services/language-service';
 
 @Component({
   selector: 'app-search',
@@ -8,5 +9,9 @@ import { RouterLink } from "@angular/router";
   styleUrl: './search.css'
 })
 export class Search {
-  
+  private langService = inject(LanguageService);
+
+  t(key: string): string {
+    return this.langService.translate(key);
+  }
 }

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-light bg-warning px-4">
-  <a class="navbar-brand fw-bold" href="#">Movie App</a>
+  <a class="navbar-brand fw-bold" href="#">{{ t('appName') }}</a>
 
   <div class="d-flex align-items-center gap-3">
     <div class="dropdown">
@@ -22,10 +22,10 @@
     </div>
 
     <a routerLink="/favorites" class="text-dark fw-semibold text-decoration-none">
-      <i class="bi bi-heart-fill me-1"> {{ favCount }}</i>
+      <i class="bi bi-heart-fill me-1"> {{ t('favorites') }} {{ favCount }}</i>
     </a>
     <a routerLink="/watchList" class="text-dark fw-semibold text-decoration-none">
-       Watchlist
+       {{ t('watchlist') }}
     </a>
 
     <a routerLink="/account-details" class="text-dark fw-semibold text-decoration-none">

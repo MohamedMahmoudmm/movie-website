@@ -4,24 +4,16 @@ import { LanguageService } from './services/language-service';
 import { ScrollToTop } from './component/scroll-to-top/scroll-to-top';
 import { Header } from './component/header/header';
 import { CommonServices } from './services/common-services';
-
-
+import { AsyncPipe } from '@angular/common';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ScrollToTop,Header],
+  imports: [RouterOutlet, ScrollToTop, Header, AsyncPipe],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
 export class App {
-  currentLang = 'en';
+  private langService = inject(LanguageService);
+  lang$ = this.langService.lang$;
 
-  constructor(private langService: LanguageService,public services: CommonServices) {
-    this.langService.lang$.subscribe((lang) => (this.currentLang = lang));
-  }
-
- 
-
-
-
- 
+  constructor(public services: CommonServices) {}
 }

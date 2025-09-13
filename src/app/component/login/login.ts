@@ -4,7 +4,7 @@ import { HttpService } from '../../services/http-service';
 
 @Component({
   selector: 'app-login',
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })

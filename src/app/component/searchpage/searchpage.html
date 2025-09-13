@@ -3,30 +3,30 @@
   <div class="d-flex gap-2 mb-3">
     <input
       type="text"
-      class="form-control w-80" 
-      placeholder="Search for a movie, tv show..."
+      class="form-control w-80"
+      placeholder="{{t('searchPlaceholder')}}"
       [(ngModel)]="query"
     />
-    <button class="btn btn-warning fw-semibold" type="button" (click)="SearchMovies()">Search</button>
+    <button class="btn btn-warning fw-semibold" type="button" (click)="SearchMovies()">{{ t('searchButton') }}</button>
   </div>
 
   <div class="d-flex gap-3 mb-3">
     <select class="form-select w-25" [(ngModel)]="selectedGenre" (change)="onFilterChange()">
-      <option [ngValue]="null">All Genres</option>
+      <option [ngValue]="null">{{ t('allGenres') }}</option>
       <option *ngFor="let g of genres" [ngValue]="g.id">{{ g.name }}</option>
     </select>
 
     <select class="form-select w-25" [(ngModel)]="sortBy" (change)="onFilterChange()">
-      <option value="popularity.desc">Popularity</option>
-      <option value="release_date.desc">Release Date</option>
-      <option value="vote_average.desc">Top Rated</option>
+      <option value="popularity.desc">{{ t('sortPopularity') }}</option>
+      <option value="release_date.desc">{{ t('sortReleaseDate') }}</option>
+      <option value="vote_average.desc">{{ t('sortTopRated') }}</option>
     </select>
   </div>
 
   <div class="row mt-4" *ngIf="this.services.movies.length == 0">
     <div class="col-md-8">
       <h6 class="fw-bold">
-        Search Results
+       {{ t('searchResults') }}
         <span *ngIf="query">for "{{ query }}"</span>
       </h6>
     </div>
@@ -36,7 +36,7 @@
 
 <div class="d-flex justify-content-center">
   <div class="spinner-border" role="status">
-    <span class="visually-hidden">Loading...</span>
+    <span class="visually-hidden">{{ t('loading') }}</span>
   </div>
 </div>
   }
