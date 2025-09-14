@@ -11,10 +11,10 @@ export class CommonServices {
   favList: MovieModel[] = [];
   watchList: MovieModel[] = [];
 
-  sessionId: string = '';
+  sessionId: string = localStorage.getItem('session_id') ?? '';
   AccountId: number = 0;
   constructor(private http: HttpService,private accountService: AccountService) {
-    this.sessionId = localStorage.getItem('session_id') ?? '';
+    
     this.accountService.getAccountDetails().subscribe((user) => {
       this.AccountId = user.id;
       this.getFav();
